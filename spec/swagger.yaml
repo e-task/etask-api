@@ -2,7 +2,7 @@ swagger: '2.0'
 schemes:
   - https
 host: sandbox.api.etask.com
-basePath: /api/v1
+basePath: /neon/app.etask/api/v1
 info:
   description: >
     This is an **example** API to demonstrate features of the API for eTASK. The

@@ -8,9 +8,6 @@
 - Look full spec:
     + JSON https://e-task.github.io/EtaskAPI/swagger.json
     + YAML https://e-task.github.io/EtaskAPI/swagger.yaml
-- Preview spec version for branch `[branch]`: https://e-task.github.io/EtaskAPI/preview/[branch]
-
-**Warning:** All above links are updated only after Travis CI finishes deployment
 
 ## Working on specification
 ### Install
