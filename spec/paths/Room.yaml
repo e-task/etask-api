@@ -1,0 +1,32 @@
+post:
+  tags:
+    - SpaceManagement
+  summary: Request rooms
+  description: Receive the exact message you've sent
+  operationId: room
+  parameters:
+    - name: message
+      in: body
+      description: Echo payload
+      required: true
+      schema:
+        type: string
+        example: Hello world!
+  security:
+    - basic_auth: []
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: '#/definitions/Room'
+      examples:
+        application/json: Hello world!
+      headers:
+        X-Rate-Limit:
+          type: integer
+          format: int32
+          description: calls per hour allowed by the user
+        X-Expires-After:
+          type: string
+          format: date-time
+          description: date in UTC when token expires

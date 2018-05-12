@@ -1,0 +1,12 @@
+type: object
+properties:
+  Id:
+    description: User supplied username
+    type: string
+    minLength: 4
+    example: John78
+  Name:
+    description: User first name
+    type: string
+    minLength: 1
+    example: John

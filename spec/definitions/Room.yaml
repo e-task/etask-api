@@ -1,0 +1,19 @@
+type: object
+properties:
+  Id:
+    description: Unique room id
+    type: integer
+    minLength: 1
+    example: 4711
+  Name:
+    description: name of the room
+    type: string
+    minLength: 3
+    example: meeting room Hawaii
+  Number:
+    description: Number of the room on the floor
+    type: string
+    minLength: 2
+    example: 345
+  CostCenter:
+    $ref: '#/definitions/CostCenter'

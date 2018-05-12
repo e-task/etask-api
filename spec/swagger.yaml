@@ -5,33 +5,40 @@ host: sandbox.api.etask.com
 basePath: /api/v1
 info:
   description: >
-    This is an **example** API to demonstrate features of OpenAPI specification
-    for Etask. Do NOT use is in production yet. 
+    This is an **example** API to demonstrate features of the API for eTASK. The
+    API ist based on the OpenAPI specification (fka Swagger 2.0). 
 
-    We hope do go online soon. Follow us on Twitter: https://twitter.com/etask
+
+    **Do NOT use the API in production yet.**
+
+
+    We hope do go online soon. Follow us on [Twitter](https://twitter.com/etask)
     to stay in tune.
 
-    # Introduction
 
-    This specification is intended to to be a good starting point for describing
-    your API in 
+
+    ## Introduction
+
+    This specification is intended to to be a good starting point for learning
+    the eTASK API. We have described the API in the  
 
     [OpenAPI/Swagger
     format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md).
 
-    It also demonstrates features of
+
+    It it based on features of
     [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo)
-    tool and 
+    tool and the
 
     [ReDoc](https://github.com/Rebilly/ReDoc) documentation engine. So beyond
     the standard OpenAPI syntax we use a few 
 
     [vendor
     extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md)
-    to make it as easy as possible for you, to understand and us our API.
+    to make it as easy as possible for you, to understand and use our API.
 
 
-    # OpenAPI Specification
+    ## OpenAPI Specification
 
     The OpenAPI Specification defines a standard, language-agnostic interface to
     REST APIs which
@@ -47,8 +54,17 @@ info:
 
     interfaces have done for lower-level programming, OpenAPI removes the
     guesswork in calling the service.
-  version: 1.0.0
+
+
+    We provide sample code for some client environment, like
+
+    * C#/.NET
+
+    * PHP
+
+    * Java
   title: Etask
+  version: 1.0.0
   termsOfService: 'https://www.etask.de/terms/'
   contact:
     email: api@etask.de
@@ -60,20 +76,19 @@ info:
     url: 'https://e-task.github.io/EtaskAPI/logo.png'
     backgroundColor: '#FFFFFF'
 externalDocs:
-  description: Find out how to create Github repo for your OpenAPI spec.
-  url: 'https://github.com/Rebilly/generator-openapi-repo'
+  description: Find out how our API evolved over the time an.
+  url: 'https://github.com/e-task/EtaskAPI'
 produces:
   - application/json
-  - application/xml
-  - text/csv
 consumes:
   - application/json
-  - application/xml
 tags:
   - name: Echo
     description: Example echo operations
   - name: User
     description: Operations about user
+  - name: SpaceManagement
+    description: Description of SpaceManagement
 securityDefinitions:
   main_auth:
     type: oauth2
