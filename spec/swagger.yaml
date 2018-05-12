@@ -5,9 +5,8 @@ swagger: '2.0'
 # You should specify common part of your endpoints in the following format:
 #   <schemes>://<host><basepath>
 schemes:
-  - http # Remove if your API doesn't support HTTP
   - https # Remove if your API donsn't support HTTPS
-host: example.com # Replace with your hostname. You can also specify port e.g. example.com:777
+host: sandbox.api.etask.com # Replace with your hostname. You can also specify port e.g. example.com:777
 basePath: /api/v1 # Replace with your basePath. Note: SHOULD begin with '/'.
 info:
   # Describe your API here, you can use GFM (https://guides.github.com/features/mastering-markdown) here
@@ -34,9 +33,9 @@ info:
   title: Example.com # Replace with your API title
   # Keep it simple. Don't add "API" or verison at the end of the string.
 
-  termsOfService: 'https://example.com/terms/' # [Optional] Replace with an URL to your ToS
+  termsOfService: 'https://www.etask.de/terms/' # [Optional] Replace with an URL to your ToS
   contact:
-    email: contact@example.com # [Optional] Replace with your contact email
+    email: api@etask.de # [Optional] Replace with your contact email
     url: 'http://example.com/contact' # [Optional] Replace with link to your contact form
   license:
     name: Apache 2.0
