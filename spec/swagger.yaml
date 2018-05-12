@@ -11,16 +11,17 @@ basePath: /api/v1 # Replace with your basePath. Note: SHOULD begin with '/'.
 info:
   # Describe your API here, you can use GFM (https://guides.github.com/features/mastering-markdown) here
   description: |
-    This is an **example** API to demontstrate features of OpenAPI specification
+    This is an **example** API to demonstrate features of OpenAPI specification for Etask. Do NOT use is in production yet. 
+    We hope do go online soon. Follow us on Twitter: https://twitter.com/etask to stay in tune.
     # Introduction
-    This specification is intended to to be a good starting point for describint your API in 
+    This specification is intended to to be a good starting point for describing your API in 
     [OpenAPI/Swagger format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md).
     It also demonstrates features of [generator-openapi-repo](https://github.com/Rebilly/generator-openapi-repo) tool and 
     [ReDoc](https://github.com/Rebilly/ReDoc) documentation engine. So beyond the standard OpenAPI syntax we use a few 
-    [vendor extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md).
+    [vendor extensions](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md) to make it as easy as possible for you, to understand and us our API.
     
     # OpenAPI Specification
-    The goal of The OpenAPI Specification is to define a standard, language-agnostic interface to REST APIs which
+    The OpenAPI Specification defines a standard, language-agnostic interface to REST APIs which
     allows both humans and computers to discover and understand the capabilities of the service without access to source
     code, documentation, or through network traffic inspection. When properly defined via OpenAPI, a consumer can 
     understand and interact with the remote service with a minimal amount of implementation logic. Similar to what
@@ -30,9 +31,7 @@ info:
   # It can be any string but it is better to use semantic versioning: http://semver.org/
   # Warning: OpenAPI require version to be string, but without quotation YAML can recognize it as number.
 
-  title: Example.com # Replace with your API title
-  # Keep it simple. Don't add "API" or verison at the end of the string.
-
+  title: Etask 
   termsOfService: 'https://www.etask.de/terms/'
   contact:
     email: api@etask.de
@@ -74,7 +73,7 @@ securityDefinitions:
   main_auth: # security definition name (you can name it as you want)
     type: oauth2 # authorization type, one of: oauth2, basic, apiKey
     # the following options are specific to oauth2 type
-    authorizationUrl: 'http://example.com/api/oauth/dialog'
+    authorizationUrl: 'http://sandbox.api.etask.de/api/oauth/dialog'
     flow: implicit
     scopes:
       'read:users': read users info
