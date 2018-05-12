@@ -43,7 +43,7 @@ get:
 put:
   tags:
     - User
-  summary: Updated user
+  summary: Update existing user
   description: This can only be done by the logged in user.
   operationId: updateUser
   produces:
