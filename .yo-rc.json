@@ -1,0 +1,10 @@
+{
+  "generator-openapi-repo": {
+    "importExistingSpec": false,
+    "name": "Etask",
+    "repo": "e-task/EtaskAPI",
+    "splitSpec": true,
+    "samples": true,
+    "installSwaggerUI": true
+  }
+}
