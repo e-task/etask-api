@@ -41,7 +41,8 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
-    url: 'https://apis.guru/openapi-template/logo.png'
+    url: 'https://e-task.github.io/EtaskAPI/logo.png'
+    backgroundColor: "#FFFFFF"
 externalDocs:
   description: Find out how to create Github repo for your OpenAPI spec.
   url: 'https://github.com/Rebilly/generator-openapi-repo'
