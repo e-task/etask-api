@@ -1,0 +1,12 @@
+type: object
+properties:
+  Version:
+    description: Version of the server in semantic versioning format
+    type: string
+    minLength: 6
+    example: 2.7.2345.88876
+  NextMaintenanceDate:
+    description: Date and time of next server maintenance.
+    type: string
+    minLength: 4
+    example: John78
