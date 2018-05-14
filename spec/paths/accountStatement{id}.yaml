@@ -1,13 +1,13 @@
 post:
   tags:
     - Accounting
-  summary: Echo accountStatement
-  description: Receive the exact message you've sent
+  summary: Reading an Account Statement
+  description: Description of Reading an Account Statement
   operationId: accountStatement
   parameters:
     - name: id
       in: path
-      description: Echo payload
+      description: Account Statement payload
       required: true
       type: integer
   security:
