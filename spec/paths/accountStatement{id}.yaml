@@ -1,27 +1,30 @@
 post:
   tags:
-    - Echo
-  summary: Echo test
+    - Accounting
+  summary: Echo accountStatement
   description: Receive the exact message you've sent
-  operationId: echo
+  operationId: accountStatement
   parameters:
-    - name: message
-      in: body
+    - name: id
+      in: path
       description: Echo payload
       required: true
-      schema:
-        type: string
-        example: Hello world!
+      type: integer
   security:
     - basic_auth: []
   responses:
     '200':
       description: OK
-      examples:
-        application/json: Hello world!
       schema:
-        type: string
-      headers:
+        $ref: '#/definitions/AccountStatement'
+      examples:
+        application/json:
+          Date: John78
+          ElectronicBankStatementnumber: John78
+          EntryDate: John78
+          FinalBalance: John78
+          Id: John78
+          OpeningBalance: John78
         X-Rate-Limit:
           type: integer
           format: int32

@@ -1,0 +1,64 @@
+type: object
+properties:
+  CompanyAdress:
+    description: Selection of the company that is to be assigned to the acquisition audit.
+    type: string
+    minLength: 4
+    example: John78
+  Id:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  Position:
+    description: >-
+      Enter the function that the company performs during the purchase audit
+      (e.g. "broker").
+    type: string
+    minLength: 4
+    example: John78
+  PurchaseAssessment:
+    description: Display of the purchase check to which the company is assigned.
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldChangeDate:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldChangeFrom:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldComputerName:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldCreateDate:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldCreatedFrom:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldDeactivated:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldGlobalUid:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldUserName:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78

@@ -1,0 +1,121 @@
+type: object
+properties:
+  ActiveAutomaticAssignment:
+    description: Check the box to activate the rule.
+    type: string
+    minLength: 4
+    example: John78
+  AndorAdvancePaymentofoperatingcosts:
+    description: >-
+      Set the check mark for the allocation to the prepayment of operating
+      costs.
+    type: string
+    minLength: 4
+    example: John78
+  AsSubtext:
+    description: >-
+      Check the box to indicate that the search text is only part of the entire
+      purpose.
+    type: string
+    minLength: 4
+    example: John78
+  ContractNumber:
+    description: Selection of the contract number.
+    type: string
+    minLength: 4
+    example: John78
+  Delineation:
+    description: Enter a description for the rule.
+    type: string
+    minLength: 4
+    example: John78
+  Fellowship:
+    description: Selection of the company for which the rule is to apply.
+    type: string
+    minLength: 4
+    example: John78
+  GeneralLedgerAccount:
+    description: >-
+      Selection of the G-L account (for example, "land tax", "account
+      maintenance charges", "interest", etc.).
+    type: string
+    minLength: 4
+    example: John78
+  IbanInThebankposting:
+    description: Enter an IBAN as a search criterion in the bank posting.
+    type: string
+    minLength: 4
+    example: John78
+  Id:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  LastFoundDate:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  LeaseNumber:
+    description: Selection of the lease agreement.
+    type: string
+    minLength: 4
+    example: John78
+  PaymentForRent:
+    description: Set the check mark for the allocation to the basic rent.
+    type: string
+    minLength: 4
+    example: John78
+  PostingText:
+    description: Enter a booking text.
+    type: string
+    minLength: 4
+    example: John78
+  RuleCode:
+    description: Enter a unique code for the rule.
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldChangeDate:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldChangeFrom:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldComputerName:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldCreateDate:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldCreatedFrom:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldDeactivated:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  SystemFieldUserName:
+    description: Empty
+    type: string
+    minLength: 4
+    example: John78
+  TextSearchedForintheusagetext:
+    description: >-
+      If the FM portal finds a payment whose intended use contains the specified
+      text, the payment is automatically assigned according to the assignment
+      rule.
+    type: string
+    minLength: 4
+    example: John78

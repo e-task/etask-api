@@ -1,0 +1,12 @@
+type: object
+properties:
+  Account:
+    description: Specification of the G-L account.
+    type: string
+    minLength: 4
+    example: John78
+  AccountCode:
+    description: Emtpy
+    type: string
+    minLength: 4
+    example: John78

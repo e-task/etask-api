@@ -89,6 +89,8 @@ tags:
     description: Operations about user
   - name: SpaceManagement
     description: Description of SpaceManagement
+  - name: Accounting
+    description: Description of Accounting
 securityDefinitions:
   main_auth:
     type: oauth2
