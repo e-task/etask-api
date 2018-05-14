@@ -22,8 +22,6 @@ get:
       description: Filter users without email
       type: boolean
   security:
-    - main_auth:
-        - 'read:users'
     - basic_auth: []
   produces:
     - application/json
@@ -61,8 +59,7 @@ put:
       schema:
         $ref: '#/definitions/User'
   security:
-    - main_auth:
-        - 'write:users'
+    - basic_auth: []
   responses:
     '200':
       description: OK
