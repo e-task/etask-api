@@ -89,12 +89,16 @@ produces:
 consumes:
   - application/json
 tags:
-  - name: User
-    description: Operations about user
+  - name: General
+    description: Genaral operations
   - name: Accounting
     description: Description of Accounting
   - name: SpaceManagement
     description: Description of SpaceManagement
+  - name: System
+    description: Operations for maintaining an eTASK web app
+  - name: User
+    description: Operations about user
 securityDefinitions:
   basic_auth:
     type: basic
