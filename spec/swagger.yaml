@@ -60,9 +60,15 @@ info:
 
     * C#/.NET
 
-    * PHP
+    * Javascript
 
-    * Java
+
+    If this does not fit in your preferred environment, you can [generate your
+    own client library](https://github.com/swagger-api/swagger-codegen).
+
+
+    See our [api repository](https://github.com/e-task/EtaskAPI) for more
+    information about the history of the API.
   title: Etask
   version: 1.0.0
   termsOfService: 'https://www.etask.de/terms/'
