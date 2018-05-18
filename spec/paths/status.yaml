@@ -12,6 +12,7 @@ get:
       examples:
         application/json:
           Version: 2.7.2345.22222
-          NextMaintenanceDate: '2018-06-08 10:00'
+          NextMaintenanceDate: '2018-06-08T18:30:00+01:00'
+          UptimeInHours: 346
     '500':
       description: Server error

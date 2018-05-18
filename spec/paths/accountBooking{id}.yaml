@@ -1,0 +1,34 @@
+post:
+  tags:
+    - Accounting
+  summary: Reading an Account Booking
+  description: Description of Reading an Account Booking
+  operationId: accountBooking
+  parameters:
+    - name: id
+      in: path
+      description: Account Booking payload
+      required: true
+      type: integer
+  security:
+    - basic_auth: []
+  responses:
+    '200':
+      description: OK
+      schema:
+        $ref: '#/definitions/AccountBooking'
+      examples:
+        application/json:
+          Account: John78
+          AccountNumber: John78
+          AccountStatementId: John78
+          AccountStatementIdentification: John78
+          Amount: John78
+        X-Rate-Limit:
+          type: integer
+          format: int32
+          description: calls per hour allowed by the user
+        X-Expires-After:
+          type: string
+          format: date-time
+          description: date in UTC when token expires
