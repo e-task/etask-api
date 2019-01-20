@@ -1,5 +1,12 @@
-# Etask OpenAPI Specification
+# eTASK Universal BIM API
 [![Build Status](https://travis-ci.org/e-task/EtaskAPI.svg?branch=master)](https://travis-ci.org/e-task/EtaskAPI)
+
+This is the source for the specification of the eTASK Universal BIM API. 
+
+The API provides Access to the real estate data in your eTASK account. This includes the BIM data, the workflows and the information in you BIM models, including IFC data and 3D visualization.
+
+All users of the eTASK platform can use any of our APIs. Our APIs developed continuously and are based on the feedback from our users.
+
 
 ## Links
 
@@ -8,20 +15,3 @@
 - Look full spec:
     + JSON https://e-task.github.io/EtaskAPI/swagger.json
     + YAML https://e-task.github.io/EtaskAPI/swagger.yaml
-
-## Working on specification
-### Install
-
-1. Install [Node JS](https://nodejs.org/)
-2. Clone repo and `cd`
-    + Run `npm install`
-
-### Usage
-
-1. Run `npm start`
-2. Checkout console output to see where local server is started. You can use all [links](#links) (except `preview`) by replacing https://e-task.github.io/EtaskAPI/ with url from the message: `Server started <url>`
-3. Make changes using your favorite editor or `swagger-editor` (look for URL in console output)
-4. All changes are immediately propagated to your local server, moreover all documentation pages will be automagically refreshed in a browser after each change
-**TIP:** you can open `swagger-editor`, documentation and `swagger-ui` in parallel
-5. Once you finish with the changes you can run tests using: `npm test`
-6. Share you changes with the rest of the world by pushing to GitHub :smile:
