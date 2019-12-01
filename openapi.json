@@ -9918,6 +9918,7 @@
           {
             "name": "singleFile",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "boolean",
               "default": true
@@ -9927,6 +9928,7 @@
           {
             "name": "facilities",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "boolean",
               "default": true
@@ -9936,6 +9938,7 @@
           {
             "name": "facilityDocuments",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "boolean",
               "default": true
@@ -9945,6 +9948,7 @@
           {
             "name": "spatialStructureDocuments",
             "in": "query",
+            "required": true,
             "schema": {
               "type": "boolean",
               "default": true
