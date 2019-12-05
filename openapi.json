@@ -22,48 +22,6 @@
     }
   ],
   "paths": {
-    "/Services/ServiceTickets/{guid}/Export/BCF": {
-      "get": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "summary": "returns the first bcf file with given file name ",
-        "operationId": "ServiceTickets_Download",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns the BCF file of an eTASK.ServiceTicket specified by guid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "ticket or file not found"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
     "/Workplace/AllocationPersonnelToHseqFunctions": {
       "get": {
         "tags": [
@@ -426,9 +384,10 @@
           "200": {
             "description": "returns one file specified filename of an item specified by guid",
             "content": {
-              "application/json": {
+              "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/File"
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -2219,1248 +2178,6 @@
           },
           "401": {
             "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Categories": {
-      "get": {
-        "tags": [
-          "Services.Categories"
-        ],
-        "summary": "Fetch the list of all 'Categories'.",
-        "operationId": "Categories_GetAll",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "start page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 1
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "limit of records per page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) A csv list of all child properties to expand for this resource.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 3
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns a list of all items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Category"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Categories' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Services.Categories"
-        ],
-        "summary": "Create a new 'Category'.",
-        "operationId": "Categories_Create",
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'Category' to create.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Category"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "201": {
-            "description": "creates a 'Category' and returns the new item",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Category"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "if given 'Category' is invalid"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Categories/{guid}": {
-      "get": {
-        "tags": [
-          "Services.Categories"
-        ],
-        "summary": "Fetch a 'Category' by the global identifier.",
-        "operationId": "Categories_GetByGuid",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) The csv list of properties to expand in result.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns an item specified by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Category"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'Category' not found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "400": {
-            "description": "Parameter missing 'guid'"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Services.Categories"
-        ],
-        "summary": "Delete a 'Category' by given global identifier",
-        "operationId": "Categories_Delete",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "'Category' by given identifier was deleted"
-          },
-          "400": {
-            "description": "'Category' could not be delete"
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Services.Categories"
-        ],
-        "summary": "Update an specified 'Category' by given global identifier.",
-        "operationId": "Categories_Update",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'Category' to update.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Category"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": "updates an specified 'Category' by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Category"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'Category' not found!"
-          },
-          "400": {
-            "description": "if 'Category' is not valid"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Categories/ByCode/{code}": {
-      "get": {
-        "tags": [
-          "Services.Categories"
-        ],
-        "summary": "Fetch a single 'Category' based on its code.",
-        "operationId": "Categories_GetByCode",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "path",
-            "required": true,
-            "description": "The code.",
-            "schema": {
-              "type": "string"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "(optional) start page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "(optional) limit of  records per page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 3
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) The csv list of properties to expand in result.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 4
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns a list of all items identified by the 'code'",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Category"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Categories' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "400": {
-            "description": "Parameter 'code' missing"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Categories/Count": {
-      "get": {
-        "tags": [
-          "Services.Categories"
-        ],
-        "summary": "Fetch the total count of 'Categories'.",
-        "operationId": "Categories_GetCount",
-        "responses": {
-          "200": {
-            "description": "returns a count of items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Categories' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Priorities": {
-      "get": {
-        "tags": [
-          "Services.Priorities"
-        ],
-        "summary": "Fetch the list of all 'Priorities'.",
-        "operationId": "Priorities_GetAll",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "start page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 1
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "limit of records per page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) A csv list of all child properties to expand for this resource.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 3
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns a list of all items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Priority"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Priorities' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Services.Priorities"
-        ],
-        "summary": "Create a new 'Priority'.",
-        "operationId": "Priorities_Create",
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'Priority' to create.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Priority"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "201": {
-            "description": "creates a 'Priority' and returns the new item",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Priority"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "if given 'Priority' is invalid"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Priorities/{guid}": {
-      "get": {
-        "tags": [
-          "Services.Priorities"
-        ],
-        "summary": "Fetch a 'Priority' by the global identifier.",
-        "operationId": "Priorities_GetByGuid",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) The csv list of properties to expand in result.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns an item specified by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Priority"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'Priority' not found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "400": {
-            "description": "Parameter missing 'guid'"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Services.Priorities"
-        ],
-        "summary": "Delete a 'Priority' by given global identifier",
-        "operationId": "Priorities_Delete",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "'Priority' by given identifier was deleted"
-          },
-          "400": {
-            "description": "'Priority' could not be delete"
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Services.Priorities"
-        ],
-        "summary": "Update an specified 'Priority' by given global identifier.",
-        "operationId": "Priorities_Update",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'Priority' to update.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Priority"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": "updates an specified 'Priority' by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Priority"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'Priority' not found!"
-          },
-          "400": {
-            "description": "if 'Priority' is not valid"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Priorities/ByCode/{code}": {
-      "get": {
-        "tags": [
-          "Services.Priorities"
-        ],
-        "summary": "Fetch a single 'Priority' based on its code.",
-        "operationId": "Priorities_GetByCode",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "path",
-            "required": true,
-            "description": "The code.",
-            "schema": {
-              "type": "string"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "(optional) start page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "(optional) limit of  records per page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 3
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) The csv list of properties to expand in result.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 4
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns a list of all items identified by the 'code'",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Priority"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Priorities' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "400": {
-            "description": "Parameter 'code' missing"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/Priorities/Count": {
-      "get": {
-        "tags": [
-          "Services.Priorities"
-        ],
-        "summary": "Fetch the total count of 'Priorities'.",
-        "operationId": "Priorities_GetCount",
-        "responses": {
-          "200": {
-            "description": "returns a count of items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Priorities' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/ServiceTickets": {
-      "get": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "summary": "Fetch the list of all 'ServiceTickets'.",
-        "operationId": "ServiceTickets_GetAll",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "start page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 1
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "limit of records per page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) A csv list of all child properties to expand for this resource.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 3
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns a list of all items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ServiceTicket"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'ServiceTickets' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "summary": "Create a new 'ServiceTicket'.",
-        "operationId": "ServiceTickets_Create",
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'ServiceTicket' to create.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/ServiceTicket"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "201": {
-            "description": "creates a 'ServiceTicket' and returns the new item",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceTicket"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "if given 'ServiceTicket' is invalid"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/ServiceTickets/{guid}": {
-      "get": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "summary": "Fetch a 'ServiceTicket' by the global identifier.",
-        "operationId": "ServiceTickets_GetByGuid",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) The csv list of properties to expand in result.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns an item specified by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceTicket"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'ServiceTicket' not found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "400": {
-            "description": "Parameter missing 'guid'"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "summary": "Delete a 'ServiceTicket' by given global identifier",
-        "operationId": "ServiceTickets_Delete",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "'ServiceTicket' by given identifier was deleted"
-          },
-          "400": {
-            "description": "'ServiceTicket' could not be delete"
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "summary": "Update an specified 'ServiceTicket' by given global identifier.",
-        "operationId": "ServiceTickets_Update",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'ServiceTicket' to update.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/ServiceTicket"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": "updates an specified 'ServiceTicket' by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceTicket"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'ServiceTicket' not found!"
-          },
-          "400": {
-            "description": "if 'ServiceTicket' is not valid"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/ServiceTickets/Count": {
-      "get": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "summary": "Fetch the total count of 'ServiceTickets'.",
-        "operationId": "ServiceTickets_GetCount",
-        "responses": {
-          "200": {
-            "description": "returns a count of items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'ServiceTickets' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/ServiceTickets/{guid}/Download/{filename}": {
-      "get": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "operationId": "ServiceTickets_Download2",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "filename",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "item or file not found"
-          },
-          "200": {
-            "description": "returns one file specified filename of an item specified by guid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Services/ServiceTickets/{guid}/Documents": {
-      "get": {
-        "tags": [
-          "Services.ServiceTickets"
-        ],
-        "operationId": "ServiceTickets_Documents",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns all documents (without content) of an item specified by guid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Document"
-                  }
-                }
-              }
-            }
           }
         },
         "security": [
@@ -6902,6 +5619,243 @@
         ]
       }
     },
+    "/Services/Ticket": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Erzeugung eines neuen ServiceTickets",
+        "description": "{\"Category\": \"001 BCF-Test\",\"Description\": \"Beschreibung\",\"Building\": \"CGN-AKS2\"}",
+        "operationId": "Ticket_PostServiceTicket",
+        "requestBody": {
+          "x-name": "data",
+          "description": "data for creating the service ticket",
+          "content": {
+            "application/json": {
+              "schema": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/TicketDto"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "Das neu erzeugte Ticket",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TicketDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
+    "/Services/Ticket/Buildings": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Liste aller im Ticket verwendbaren Gebäude",
+        "operationId": "Ticket_GetBuildings",
+        "responses": {
+          "200": {
+            "description": "all buildings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BuildingDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found"
+          },
+          "500": {
+            "description": "see response for further information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiException"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
+    "/Services/Ticket/Buildings/{code}/Rooms": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Liste aller Räume des durch den Code identifizieren Gebäudes",
+        "operationId": "Ticket_GetRoomsInBuilding",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "eindeutiger Gebäude Code",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all rooms in given building",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RoomDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found"
+          },
+          "500": {
+            "description": "see response for further information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiException"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
+    "/Services/Ticket/Categories": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Liste aller im Ticket verwendbaren Kategorien",
+        "operationId": "Ticket_GetCategories",
+        "responses": {
+          "200": {
+            "description": "all categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found"
+          },
+          "500": {
+            "description": "see response for further information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiException"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
+    "/Services/Ticket/Categories/{code}/SubCategories": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "summary": "Liste aller Unterkategorieren der durch den Code identifizieren Kategorie",
+        "operationId": "Ticket_GetSubcategories",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "eindeutiger Kategorie Code",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "all subcategories for given category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SubCategoryDto"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "not found"
+          },
+          "500": {
+            "description": "see response for further information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiException"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
     "/ProjectManagement/TimeRecording/Employee": {
       "get": {
         "tags": [
@@ -8774,510 +7728,6 @@
         ]
       }
     },
-    "/Core/Assets": {
-      "get": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "summary": "Fetch the list of all 'Assets'.",
-        "operationId": "Assets_GetAll",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "start page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 1
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "limit of records per page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) A csv list of all child properties to expand for this resource.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 3
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns a list of all items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Asset"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Assets' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "summary": "Create a new 'Asset'.",
-        "operationId": "Assets_Create",
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'Asset' to create.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Asset"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "201": {
-            "description": "creates a 'Asset' and returns the new item",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Asset"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "if given 'Asset' is invalid"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Core/Assets/{guid}": {
-      "get": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "summary": "Fetch a 'Asset' by the global identifier.",
-        "operationId": "Assets_GetByGuid",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) The csv list of properties to expand in result.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns an item specified by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Asset"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'Asset' not found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "400": {
-            "description": "Parameter missing 'guid'"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "summary": "Delete a 'Asset' by given global identifier",
-        "operationId": "Assets_Delete",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "'Asset' by given identifier was deleted"
-          },
-          "400": {
-            "description": "'Asset' could not be delete"
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      },
-      "put": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "summary": "Update an specified 'Asset' by given global identifier.",
-        "operationId": "Assets_Update",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "item",
-          "description": "The 'Asset' to update.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Asset"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": "updates an specified 'Asset' by given identifier",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Asset"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "'Asset' not found!"
-          },
-          "400": {
-            "description": "if 'Asset' is not valid"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Exception"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Core/Assets/ByCode/{code}": {
-      "get": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "summary": "Fetch a single 'Asset' based on its code.",
-        "operationId": "Assets_GetByCode",
-        "parameters": [
-          {
-            "name": "code",
-            "in": "path",
-            "required": true,
-            "description": "The code.",
-            "schema": {
-              "type": "string"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "(optional) start page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 2
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "(optional) limit of  records per page.",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "maximum": 2147483647.0,
-              "minimum": 1.0,
-              "nullable": true
-            },
-            "x-position": 3
-          },
-          {
-            "name": "expand",
-            "in": "query",
-            "description": "(optional) The csv list of properties to expand in result.",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 4
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns a list of all items identified by the 'code'",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Asset"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Assets' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          },
-          "400": {
-            "description": "Parameter 'code' missing"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Core/Assets/Count": {
-      "get": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "summary": "Fetch the total count of 'Assets'.",
-        "operationId": "Assets_GetCount",
-        "responses": {
-          "200": {
-            "description": "returns a count of items",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "no 'Assets' found!"
-          },
-          "401": {
-            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Core/Assets/{guid}/Download/{filename}": {
-      "get": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "operationId": "Assets_Download",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "filename",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "x-position": 2
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "item or file not found"
-          },
-          "200": {
-            "description": "returns one file specified filename of an item specified by guid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/File"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
-    "/Core/Assets/{guid}/Documents": {
-      "get": {
-        "tags": [
-          "Core.Assets"
-        ],
-        "operationId": "Assets_Documents",
-        "parameters": [
-          {
-            "name": "guid",
-            "in": "path",
-            "required": true,
-            "description": "global identifier (GUID/UUID)",
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "returns all documents (without content) of an item specified by guid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Document"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "EtaskApiToken": []
-          }
-        ]
-      }
-    },
     "/Core/Buildings": {
       "get": {
         "tags": [
@@ -9726,9 +8176,10 @@
           "200": {
             "description": "returns one file specified filename of an item specified by guid",
             "content": {
-              "application/json": {
+              "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/File"
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -10437,9 +8888,10 @@
           "200": {
             "description": "returns one file specified filename of an item specified by guid",
             "content": {
-              "application/json": {
+              "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/File"
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -10905,6 +9357,418 @@
         ]
       }
     },
+    "/Core/Din277UsageTypes": {
+      "get": {
+        "tags": [
+          "Core.Din277UsageTypes"
+        ],
+        "summary": "Fetch the list of all 'Din277UsageTypes'.",
+        "operationId": "Din277UsageTypes_GetAll",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "start page.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit of records per page.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "(optional) A csv list of all child properties to expand for this resource.",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a list of all items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Din277UsageType"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "no 'Din277UsageTypes' found!"
+          },
+          "401": {
+            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Core.Din277UsageTypes"
+        ],
+        "summary": "Create a new 'Din277UsageType'.",
+        "operationId": "Din277UsageTypes_Create",
+        "requestBody": {
+          "x-name": "item",
+          "description": "The 'Din277UsageType' to create.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Din277UsageType"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "201": {
+            "description": "creates a 'Din277UsageType' and returns the new item",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Din277UsageType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "if given 'Din277UsageType' is invalid"
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
+    "/Core/Din277UsageTypes/{guid}": {
+      "get": {
+        "tags": [
+          "Core.Din277UsageTypes"
+        ],
+        "summary": "Fetch a 'Din277UsageType' by the global identifier.",
+        "operationId": "Din277UsageTypes_GetByGuid",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "required": true,
+            "description": "global identifier (GUID/UUID)",
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "(optional) The csv list of properties to expand in result.",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns an item specified by given identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Din277UsageType"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'Din277UsageType' not found!"
+          },
+          "401": {
+            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
+          },
+          "400": {
+            "description": "Parameter missing 'guid'"
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Core.Din277UsageTypes"
+        ],
+        "summary": "Delete a 'Din277UsageType' by given global identifier",
+        "operationId": "Din277UsageTypes_Delete",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "required": true,
+            "description": "global identifier (GUID/UUID)",
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "'Din277UsageType' by given identifier was deleted"
+          },
+          "400": {
+            "description": "'Din277UsageType' could not be delete"
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exception"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Core.Din277UsageTypes"
+        ],
+        "summary": "Update an specified 'Din277UsageType' by given global identifier.",
+        "operationId": "Din277UsageTypes_Update",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "required": true,
+            "description": "global identifier (GUID/UUID)",
+            "schema": {
+              "type": "string",
+              "format": "guid"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "item",
+          "description": "The 'Din277UsageType' to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Din277UsageType"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "200": {
+            "description": "updates an specified 'Din277UsageType' by given identifier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Din277UsageType"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'Din277UsageType' not found!"
+          },
+          "400": {
+            "description": "if 'Din277UsageType' is not valid"
+          },
+          "401": {
+            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Exception"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
+    "/Core/Din277UsageTypes/ByCode/{code}": {
+      "get": {
+        "tags": [
+          "Core.Din277UsageTypes"
+        ],
+        "summary": "Fetch a single 'Din277UsageType' based on its code.",
+        "operationId": "Din277UsageTypes_GetByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "description": "The code.",
+            "schema": {
+              "type": "string"
+            },
+            "x-position": 1
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "(optional) start page.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 2
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "(optional) limit of  records per page.",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "maximum": 2147483647.0,
+              "minimum": 1.0,
+              "nullable": true
+            },
+            "x-position": 3
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "description": "(optional) The csv list of properties to expand in result.",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 4
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "returns a list of all items identified by the 'code'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Din277UsageType"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "no 'Din277UsageTypes' found!"
+          },
+          "401": {
+            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
+          },
+          "400": {
+            "description": "Parameter 'code' missing"
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
+    "/Core/Din277UsageTypes/Count": {
+      "get": {
+        "tags": [
+          "Core.Din277UsageTypes"
+        ],
+        "summary": "Fetch the total count of 'Din277UsageTypes'.",
+        "operationId": "Din277UsageTypes_GetCount",
+        "responses": {
+          "200": {
+            "description": "returns a count of items",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "no 'Din277UsageTypes' found!"
+          },
+          "401": {
+            "description": "Unauthorized, the EtaskApiToken is missing or invalid (expired)"
+          }
+        },
+        "security": [
+          {
+            "EtaskApiToken": []
+          }
+        ]
+      }
+    },
     "/Core/Floors": {
       "get": {
         "tags": [
@@ -11353,9 +10217,10 @@
           "200": {
             "description": "returns one file specified filename of an item specified by guid",
             "content": {
-              "application/json": {
+              "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/File"
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -12794,9 +11659,10 @@
           "200": {
             "description": "returns one file specified filename of an item specified by guid",
             "content": {
-              "application/json": {
+              "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/File"
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -13298,9 +12164,10 @@
           "200": {
             "description": "returns one file specified filename of an item specified by guid",
             "content": {
-              "application/json": {
+              "application/octet-stream": {
                 "schema": {
-                  "$ref": "#/components/schemas/File"
+                  "type": "string",
+                  "format": "binary"
                 }
               }
             }
@@ -13357,11 +12224,6 @@
   },
   "components": {
     "schemas": {
-      "File": {
-        "type": "object",
-        "x-abstract": true,
-        "additionalProperties": false
-      },
       "AllocationPersonnelToHseqFunction": {
         "allOf": [
           {
@@ -14644,7 +13506,7 @@
               "Description": {
                 "type": "string",
                 "description": "Description",
-                "maxLength": 255,
+                "maxLength": 4000,
                 "nullable": true
               },
               "Identification": {
@@ -15026,7 +13888,7 @@
               "ItemText": {
                 "type": "string",
                 "description": "Item text",
-                "maxLength": 50,
+                "maxLength": 100,
                 "nullable": true
               },
               "Value": {
@@ -15471,13 +14333,6 @@
                 "description": "Select the trade to which the company should be assigned.",
                 "format": "int32",
                 "nullable": true
-              },
-              "Assets": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/Asset"
-                }
               },
               "ActivationForRegistrationManagement": {
                 "type": "boolean",
@@ -17602,23 +16457,19 @@
                 ]
               },
               "UsageTypeDin277": {
-                "type": "integer",
                 "description": "Select the room usage type according to DIN 277-2.",
-                "format": "int32",
-                "nullable": true
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Din277UsageType"
+                  }
+                ]
               },
               "WallCovering": {
                 "type": "integer",
                 "description": "Select the wall covering.",
                 "format": "int32",
                 "nullable": true
-              },
-              "Assets": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/Asset"
-                }
               },
               "CanBeHeated": {
                 "type": "boolean",
@@ -18089,772 +16940,19 @@
           }
         ]
       },
-      "Asset": {
+      "Din277UsageType": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AssetBase"
+            "$ref": "#/components/schemas/Din277UsageTypeBase"
           },
           {
             "type": "object",
-            "description": "In the eTASK.FM portal, all movable and immovable assets are referred to as\n\"objects\". There are many different objects that you can manage within the\neTASK.FM portal.",
-            "additionalProperties": false,
-            "properties": {
-              "Images": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/Image"
-                }
-              },
-              "Documents": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/Document"
-                }
-              },
-              "Annotations": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Annotations"
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      },
-      "AssetBase": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BusinessObjectBase"
-          },
-          {
-            "type": "object",
-            "x-abstract": true,
-            "additionalProperties": false,
-            "required": [
-              "Guid",
-              "AssetType",
-              "Id",
-              "RelevantForFireProtection"
-            ],
-            "properties": {
-              "Guid": {
-                "type": "string",
-                "description": "global identifier",
-                "format": "guid",
-                "minLength": 1
-              },
-              "AssetConditionState": {
-                "type": "integer",
-                "description": "Current condition",
-                "format": "int32",
-                "nullable": true
-              },
-              "AssetListFinancialaccounting": {
-                "type": "integer",
-                "description": "Select the Financial Accounting Software equipment list.",
-                "format": "int32",
-                "nullable": true
-              },
-              "AssetRoomId": {
-                "description": "Select the room in which the object is to be relocated from the combobox.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Room"
-                  }
-                ]
-              },
-              "AssetStatus": {
-                "type": "integer",
-                "description": "Selection of the status of the object.",
-                "format": "int32",
-                "nullable": true
-              },
-              "AssetType": {
-                "type": "integer",
-                "description": "To be texted by jens.coosmann@etask.de",
-                "format": "int32"
-              },
-              "Availability": {
-                "type": "integer",
-                "description": "Select the object's danger group.",
-                "format": "int32",
-                "nullable": true
-              },
-              "CompanyAddress": {
-                "description": "Select the company granting the warranty.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/CompanyAddress"
-                  }
-                ]
-              },
-              "CostCenter": {
-                "description": "Select the cost center which is to be used to settle costs for the unspecified\nobject.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/CostCenter"
-                  }
-                ]
-              },
-              "Department": {
-                "type": "integer",
-                "description": "Selection of the department that owns the object.",
-                "format": "int32",
-                "nullable": true
-              },
-              "Desk": {
-                "type": "integer",
-                "description": "Select the work station on which the object is currently located.",
-                "format": "int32",
-                "nullable": true
-              },
-              "IncomingInvoice": {
-                "type": "integer",
-                "description": "Purchase invoice",
-                "format": "int32",
-                "nullable": true
-              },
-              "ManufacturerCompanyAddress": {
-                "description": "Manufacturer’s address",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/CompanyAddress"
-                  }
-                ]
-              },
-              "MatchCode": {
-                "type": "integer",
-                "description": "Select a previously created match code.",
-                "format": "int32",
-                "nullable": true
-              },
-              "ParentAsset": {
-                "description": "Selection of the object that is superior to the current object, which arranges\nthe object hierarchically in the Plant Explorer.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Asset"
-                  }
-                ]
-              },
-              "Person": {
-                "description": "Select the employee available to use the unspecified object.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Person"
-                  }
-                ]
-              },
-              "Room": {
-                "description": "Select the room in which the unspecified object is currently located.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Room"
-                  }
-                ]
-              },
-              "SupplierCompanyAddress": {
-                "description": "Selection of the company that delivered the object.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/CompanyAddress"
-                  }
-                ]
-              },
-              "Assets": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/Asset"
-                }
-              },
-              "ServiceTickets": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/ServiceTicket"
-                }
-              },
-              "Id": {
-                "type": "string",
-                "description": "-- SUMMARY MISSING --",
-                "format": "guid",
-                "minLength": 1
-              },
-              "RelevantForFireProtection": {
-                "type": "boolean",
-                "description": "Specifies whether this object is relevant for fire protection."
-              },
-              "Barcode": {
-                "type": "string",
-                "description": "Enter the barcode for the unspecified object. This is only necessary if the FM\n\"Inventory\" module is also installed to manage the object. You can find the\nbarcode on the barcode label on the object.",
-                "maxLength": 30,
-                "nullable": true
-              },
-              "Code": {
-                "type": "string",
-                "description": "The object code of the selected match code is automatically entered here. If\nnecessary, you can replace it with an abbreviation for the unspecified object.\nThe code entered here should correspond to a code system used in-house, as the\nobject will be inserted by the object code in Object Explorer. If the object\ncode is changed in the match code, the manually entered value will be\noverwritten.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "DateOfAcquisition": {
-                "type": "string",
-                "description": "Select the date on which the unspecified object was acquired",
-                "format": "date-time",
-                "nullable": true
-              },
-              "DateOfInventory": {
-                "type": "string",
-                "description": "Select the date on which the object was last recorded during an inventory.",
-                "format": "date-time",
-                "nullable": true
-              },
-              "DateOfOrder": {
-                "type": "string",
-                "description": "Selection of the date on which the object was ordered.",
-                "format": "date-time",
-                "nullable": true
-              },
-              "DateOfRemoval": {
-                "type": "string",
-                "description": "Date of Removal",
-                "format": "date-time",
-                "nullable": true
-              },
-              "Description": {
-                "type": "string",
-                "description": "Description",
-                "maxLength": 4000,
-                "nullable": true
-              },
-              "EndOfWarranty": {
-                "type": "string",
-                "description": "Select the date on which the warranty will expire.",
-                "format": "date-time",
-                "nullable": true
-              },
-              "EquipmentNo": {
-                "type": "string",
-                "description": "Equipment No.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "FacilityCode": {
-                "type": "string",
-                "description": "Facility code",
-                "maxLength": 100,
-                "nullable": true
-              },
-              "FacilityNo": {
-                "type": "string",
-                "description": "Facility no.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "IdentificationNumber1": {
-                "type": "string",
-                "description": "Enter a specific number of identification.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "IdentificationNumber2": {
-                "type": "string",
-                "description": "Enter a specific number of identification.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "IfcGlobalId": {
-                "type": "string",
-                "description": "To be texted by jens.coosmann@etask.de",
-                "maxLength": 22,
-                "nullable": true
-              },
-              "InventoryTimestamp": {
-                "type": "string",
-                "description": "-- SUMMARY MISSING --",
-                "maxLength": 14,
-                "nullable": true
-              },
-              "Manufacturer": {
-                "type": "string",
-                "description": "Enter the name of the manufacturer (e.g., \"Samsung\").",
-                "maxLength": 30,
-                "nullable": true
-              },
-              "MatchCodeData": {
-                "type": "string",
-                "description": "Displays the data transferred from the match code. You can enter individual data\ndeviating from the match code data in the respective adjacent column.",
-                "maxLength": 4000,
-                "nullable": true
-              },
-              "Name": {
-                "type": "string",
-                "description": "Enter a full name for the unspecified object. If you have already selected a\nmatch code in the \"Match Code Data\" section, this field will automatically be\nfilled in with the data in the match code.",
-                "maxLength": 100,
-                "nullable": true
-              },
-              "NavvisCode": {
-                "type": "string",
-                "description": "To be texted by jens.coosmann@etask.de",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "ObjectTypeData": {
-                "type": "string",
-                "description": "Use this function to save data entered for the individual data.",
-                "nullable": true
-              },
-              "OrderNumber": {
-                "type": "string",
-                "description": "Enter the order number of the object.",
-                "maxLength": 20,
-                "nullable": true
-              },
-              "PurchasePrice": {
-                "type": "number",
-                "description": "Enter the purchase price for the unspecified object.",
-                "format": "decimal",
-                "nullable": true
-              },
-              "Quantity": {
-                "type": "integer",
-                "description": "Enter the number of individual objects available from the unspecified object.",
-                "format": "int32",
-                "nullable": true
-              },
-              "Remark": {
-                "type": "string",
-                "description": "Enter an additional comment concerning the unspecified object.",
-                "maxLength": 8000,
-                "nullable": true
-              },
-              "ResidualValue": {
-                "type": "number",
-                "description": "To be texted by jens.coosmann@etask.de",
-                "format": "decimal",
-                "nullable": true
-              },
-              "SerialNumber1": {
-                "type": "string",
-                "description": "Enter the serial number of the object. Serial numbers are usually located either\ndirectly on the object (e.g., stamped on it, or on a sticker) or on its\npackaging.",
-                "maxLength": 30,
-                "nullable": true
-              },
-              "SerialNumber2": {
-                "type": "string",
-                "description": "If required enter an additional serial number.",
-                "maxLength": 30,
-                "nullable": true
-              },
-              "Stocktaker": {
-                "type": "string",
-                "description": "Enter the name of the employee who recorded the unspecified object during the\ninventory.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "TextForMobileenddevice": {
-                "type": "string",
-                "description": "Enter a short text which will be displayed on the mobile end device if\neTASK.Inventory is used to take the inventory of the unspecified object.",
-                "maxLength": 200,
-                "nullable": true
-              },
-              "TextOnBarcode": {
-                "type": "string",
-                "description": "Enter a short text which is to be printed on the bar code.",
-                "maxLength": 25,
-                "nullable": true
-              },
-              "TotalServiceLife": {
-                "type": "integer",
-                "description": "Enter the unspecified object’s total service life in years.",
-                "format": "int32",
-                "nullable": true
-              },
-              "TypeDesignationOfmanufacturer": {
-                "type": "string",
-                "description": "Enter the manufacturer's full type designation for the object.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "YearOfConstruction": {
-                "type": "integer",
-                "description": "Enter this object's year of construction in this field.",
-                "format": "int32",
-                "nullable": true
-              },
-              "RecordCreated": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Creation date of this data record",
-                "format": "date-time"
-              },
-              "RecordCreatedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who created the data record",
-                "nullable": true
-              },
-              "RecordDeactivated": {
-                "type": "boolean",
-                "readOnly": true,
-                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
-              },
-              "RecordModified": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Date of last change to data record",
-                "format": "date-time"
-              },
-              "RecordModifiedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who last changed the data record",
-                "nullable": true
-              },
-              "RecordModifiedFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name or IP adress of the computer used for last change to data record",
-                "nullable": true
-              },
-              "RecordModifiedWith": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the program used for last change to data record",
-                "nullable": true
-              },
-              "RecordValidFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              },
-              "RecordValidTo": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              }
-            }
-          }
-        ]
-      },
-      "ServiceTicket": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ServiceTicketBase"
-          },
-          {
-            "type": "object",
-            "description": "eTASK.service ticket allows you to order services (e.g. repairs, special\ncleaning or other freely definable services) and manage their execution within a\nspecified framework. The user selects the category and - if available - the\nsubcategory of his request and describes this with a freely definable text.\nOptionally, requests for other persons and buildings can also be entered. After\nsaving the request, you can still upload a document or add a comment at any\ntime. The service request created is forwarded as a ticket to the group\nresponsible for this category in the selected building. Service tickets can be\nretrieved at any time via the service list of the eTASK.FM portal, depending on\nthe read rights of the logged in user.",
-            "additionalProperties": false,
-            "properties": {
-              "Documents": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/Document"
-                }
-              },
-              "Annotations": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Annotations"
-                  }
-                ]
-              }
-            }
-          }
-        ]
-      },
-      "ServiceTicketBase": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BusinessObjectBase"
-          },
-          {
-            "type": "object",
-            "x-abstract": true,
-            "additionalProperties": false,
-            "required": [
-              "Guid",
-              "Requestor",
-              "ServiceTicketCategory",
-              "Description",
-              "ReportingDate",
-              "Uid",
-              "WorkTimeUndercut"
-            ],
-            "properties": {
-              "Guid": {
-                "type": "string",
-                "description": "global identifier",
-                "format": "guid",
-                "minLength": 1
-              },
-              "Asset": {
-                "description": "Affected object",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Asset"
-                  }
-                ]
-              },
-              "Building": {
-                "description": "Apllicants building",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Building"
-                  }
-                ]
-              },
-              "CostCenter": {
-                "description": "Cost Center",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/CostCenter"
-                  }
-                ]
-              },
-              "MessageByEmail": {
-                "type": "integer",
-                "description": "To be texted by klaus.aengenvoort@etask.de",
-                "format": "int32",
-                "nullable": true
-              },
-              "Move": {
-                "type": "integer",
-                "description": "To be texted by klaus.aengenvoort@etask.de",
-                "format": "int32",
-                "nullable": true
-              },
-              "OtherBuilding": {
-                "description": "Deviating building (from applicants building)",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Building"
-                  }
-                ]
-              },
-              "OtherPerson": {
-                "description": "Deviating applicant",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Person"
-                  }
-                ]
-              },
-              "OtherRoom": {
-                "description": "Selection of the alternative room if the service is requested for someone else\nor if the service is to be performed in a room in which the requester does not\nhave his or her work center.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Room"
-                  }
-                ]
-              },
-              "Requestor": {
-                "description": "Applicant",
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Person"
-                  }
-                ]
-              },
-              "RequestorCostCenter": {
-                "description": "Selection of the cost center via which the service ticket is to be billed.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/CostCenter"
-                  }
-                ]
-              },
-              "ResonsiblePerson": {
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Person"
-                  }
-                ]
-              },
-              "Room": {
-                "description": "Affected room",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Room"
-                  }
-                ]
-              },
-              "ServiceTicketCategory": {
-                "description": "Category",
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Category"
-                  }
-                ]
-              },
-              "ServiceTicketPriority": {
-                "description": "Priority",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Priority"
-                  }
-                ]
-              },
-              "SubCategory": {
-                "type": "integer",
-                "description": "Sub-Category",
-                "format": "int32",
-                "nullable": true
-              },
-              "UserGroup": {
-                "type": "integer",
-                "format": "int32",
-                "nullable": true
-              },
-              "WorkflowTicket": {
-                "description": "Ticket no.",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/Ticket"
-                  }
-                ]
-              },
-              "WorkOrder": {
-                "type": "integer",
-                "description": "Corresponding maintenance order",
-                "format": "int32",
-                "nullable": true
-              },
-              "Description": {
-                "type": "string",
-                "description": "Description",
-                "maxLength": 4000,
-                "minLength": 1
-              },
-              "ReportingDate": {
-                "type": "string",
-                "description": "Reporting date",
-                "format": "date-time",
-                "minLength": 1
-              },
-              "Uid": {
-                "type": "string",
-                "description": "-- SUMMARY MISSING --",
-                "format": "guid",
-                "minLength": 1
-              },
-              "WorkTimeUndercut": {
-                "type": "boolean",
-                "description": "-- SUMMARY MISSING --"
-              },
-              "DesiredDeliveryDate": {
-                "type": "string",
-                "description": "Enter a desired delivery date[DD.MM.YYYYY] and a desired delivery time[hh:mm].",
-                "format": "date-time",
-                "nullable": true
-              },
-              "TicketNumber": {
-                "type": "string",
-                "description": "-- SUMMARY MISSING --",
-                "maxLength": 18,
-                "nullable": true
-              },
-              "RecordCreated": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Creation date of this data record",
-                "format": "date-time"
-              },
-              "RecordCreatedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who created the data record",
-                "nullable": true
-              },
-              "RecordDeactivated": {
-                "type": "boolean",
-                "readOnly": true,
-                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
-              },
-              "RecordModified": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Date of last change to data record",
-                "format": "date-time"
-              },
-              "RecordModifiedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who last changed the data record",
-                "nullable": true
-              },
-              "RecordModifiedFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name or IP adress of the computer used for last change to data record",
-                "nullable": true
-              },
-              "RecordModifiedWith": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the program used for last change to data record",
-                "nullable": true
-              },
-              "RecordValidFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              },
-              "RecordValidTo": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              }
-            }
-          }
-        ]
-      },
-      "Category": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CategoryBase"
-          },
-          {
-            "type": "object",
-            "description": "Enter here the names fu¨r and the service categories you want to offer the\nservice ticket to u¨ber (e.g. \"Cleaning\"). Then add a group of people to be\nresponsible for processing the service tickets in this category. If you want to\nexpand the category further, add a sub-category (e.g. \"Window cleaning\").",
+            "description": "Create data records for usage types of building areas according to DIN 277.\nThese data records can later be selected in the \"Rooms\" form and can also be\nfurther subdivided by the data records in the \"Internal usage types\" list.",
             "additionalProperties": false
           }
         ]
       },
-      "CategoryBase": {
+      "Din277UsageTypeBase": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BusinessObjectBase"
@@ -18873,291 +16971,53 @@
                 "format": "guid",
                 "minLength": 1
               },
-              "Classification": {
+              "UsageGroup": {
                 "type": "integer",
-                "description": "Classification",
+                "description": "Select the usage group according to DIN 277.",
                 "format": "int32",
                 "nullable": true
               },
-              "Code": {
-                "type": "string",
-                "description": "Enter an abbreviation for the service category.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "Name": {
-                "type": "string",
-                "description": "Enter the full name for the service category.",
-                "maxLength": 100,
-                "nullable": true
-              },
-              "Position": {
-                "type": "integer",
-                "description": "Position",
-                "format": "int32",
-                "nullable": true
-              },
-              "RecordCreated": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Creation date of this data record",
-                "format": "date-time"
-              },
-              "RecordCreatedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who created the data record",
-                "nullable": true
-              },
-              "RecordDeactivated": {
-                "type": "boolean",
-                "readOnly": true,
-                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
-              },
-              "RecordModified": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Date of last change to data record",
-                "format": "date-time"
-              },
-              "RecordModifiedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who last changed the data record",
-                "nullable": true
-              },
-              "RecordModifiedFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name or IP adress of the computer used for last change to data record",
-                "nullable": true
-              },
-              "RecordModifiedWith": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the program used for last change to data record",
-                "nullable": true
-              },
-              "RecordValidFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              },
-              "RecordValidTo": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              }
-            }
-          }
-        ]
-      },
-      "Priority": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/PriorityBase"
-          },
-          {
-            "type": "object",
-            "description": "At this point, define priorities that a contractor can assign, e.g. \"high\",\n\"medium\" or \"low\". Avoid numerical priorities where the applicant cannot see\nwhether \"1\" is high or low.",
-            "additionalProperties": false
-          }
-        ]
-      },
-      "PriorityBase": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BusinessObjectBase"
-          },
-          {
-            "type": "object",
-            "x-abstract": true,
-            "additionalProperties": false,
-            "required": [
-              "Guid"
-            ],
-            "properties": {
-              "Guid": {
-                "type": "string",
-                "description": "global identifier",
-                "format": "guid",
-                "minLength": 1
-              },
-              "Code": {
-                "type": "string",
-                "description": "Enter an abbreviation for the priority.",
-                "maxLength": 50,
-                "nullable": true
-              },
-              "Name": {
-                "type": "string",
-                "description": "Enter the full name for the priority.",
-                "maxLength": 100,
-                "nullable": true
-              },
-              "RecordCreated": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Creation date of this data record",
-                "format": "date-time"
-              },
-              "RecordCreatedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who created the data record",
-                "nullable": true
-              },
-              "RecordDeactivated": {
-                "type": "boolean",
-                "readOnly": true,
-                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
-              },
-              "RecordModified": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Date of last change to data record",
-                "format": "date-time"
-              },
-              "RecordModifiedBy": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the user who last changed the data record",
-                "nullable": true
-              },
-              "RecordModifiedFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name or IP adress of the computer used for last change to data record",
-                "nullable": true
-              },
-              "RecordModifiedWith": {
-                "type": "string",
-                "readOnly": true,
-                "description": "Name of the program used for last change to data record",
-                "nullable": true
-              },
-              "RecordValidFrom": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              },
-              "RecordValidTo": {
-                "type": "string",
-                "readOnly": true,
-                "description": "-- SUMMARY MISSING --",
-                "format": "date-time",
-                "nullable": true
-              }
-            }
-          }
-        ]
-      },
-      "Ticket": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/TicketBase"
-          },
-          {
-            "type": "object",
-            "description": "Workflow tickets are used to store identification, status and history data for a\nrun of any workflow. Each workflow ticket is assigned a unique system-wide\nticket number. View the data of a workflow run in this form.",
-            "additionalProperties": false
-          }
-        ]
-      },
-      "TicketBase": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BusinessObjectBase"
-          },
-          {
-            "type": "object",
-            "x-abstract": true,
-            "additionalProperties": false,
-            "required": [
-              "Guid",
-              "ServiceStep",
-              "Workflow",
-              "WorkflowRole",
-              "TicketCreateDate",
-              "TicketName",
-              "TicketNo",
-              "WorkflowStartDate"
-            ],
-            "properties": {
-              "Guid": {
-                "type": "string",
-                "description": "global identifier",
-                "format": "guid",
-                "minLength": 1
-              },
-              "ServiceStep": {
-                "type": "integer",
-                "description": "Displays the current workflow step of the workflow ticket.",
-                "format": "int32"
-              },
-              "Workflow": {
-                "type": "integer",
-                "description": "Displays the name of the workflow ticket.",
-                "format": "int32"
-              },
-              "WorkflowRole": {
-                "type": "integer",
-                "description": "Displays the workflow role currently responsible for the workflow ticket.",
-                "format": "int32"
-              },
-              "ServiceTickets": {
+              "Rooms": {
                 "type": "array",
                 "nullable": true,
                 "items": {
-                  "$ref": "#/components/schemas/ServiceTicket"
+                  "$ref": "#/components/schemas/Room"
                 }
               },
-              "TicketCreateDate": {
-                "type": "string",
-                "description": "Displays the date on which the data record managed by the workflow was created\non the workflow webform.",
-                "format": "date-time",
-                "minLength": 1
-              },
-              "TicketName": {
-                "type": "string",
-                "description": "Displays the name of the workflow ticket.",
-                "maxLength": 500,
-                "minLength": 1
-              },
-              "TicketNo": {
-                "type": "string",
-                "description": "Displays the ticket number of the workflow run.",
-                "maxLength": 18,
-                "minLength": 1
-              },
-              "WorkflowStartDate": {
-                "type": "string",
-                "description": "Displays the date on which the workflow run was started.",
-                "format": "date-time",
-                "minLength": 1
-              },
-              "PlannedFinishOfworkflow": {
-                "type": "string",
-                "description": "Displays the date on which the workflow should be completed.",
-                "format": "date-time",
+              "BackgroundColor": {
+                "type": "integer",
+                "description": "Enter the number of the background color in CAD visualization (from\n\"0\" to \"119\").",
+                "format": "int32",
                 "nullable": true
               },
-              "WorkflowCompletedOn": {
+              "Code": {
                 "type": "string",
-                "description": "Displays the date on which the workflow run ended.",
-                "format": "date-time",
+                "description": "Enter the abbreviation for the usage type according to DIN 277 (e.g.,\n\"2.1\" for \"office space\").",
+                "maxLength": 10,
                 "nullable": true
               },
-              "WorkflowTable": {
+              "ForegroundColor": {
+                "type": "integer",
+                "description": "Enter the number of the foreground color in CAD visualization (from\n\"0\" to \"119\").",
+                "format": "int32",
+                "nullable": true
+              },
+              "Name": {
                 "type": "string",
-                "description": "To be texted by jens.coosmann@etask.de",
-                "maxLength": 50,
+                "description": "Enter the full name of the usage type according to DIN 277 (e.g., \"office\nspace\").",
+                "maxLength": 100,
+                "nullable": true
+              },
+              "Pattern": {
+                "type": "integer",
+                "description": "Enter the number of the pattern in CAD visualization (from \"1\" to\n\"77\").",
+                "format": "int32",
+                "nullable": true
+              },
+              "UsageGroupCode": {
+                "type": "string",
+                "description": "-- SUMMARY MISSING --",
+                "maxLength": 10,
                 "nullable": true
               },
               "RecordCreated": {
@@ -19557,13 +17417,6 @@
                   }
                 ]
               },
-              "Assets": {
-                "type": "array",
-                "nullable": true,
-                "items": {
-                  "$ref": "#/components/schemas/Asset"
-                }
-              },
               "Inactive": {
                 "type": "boolean",
                 "description": "Indicate whether the employee is currently inactive."
@@ -19921,6 +17774,791 @@
               "SourceName": {
                 "type": "string",
                 "maxLength": 50,
+                "nullable": true
+              },
+              "RecordCreated": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Creation date of this data record",
+                "format": "date-time"
+              },
+              "RecordCreatedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who created the data record",
+                "nullable": true
+              },
+              "RecordDeactivated": {
+                "type": "boolean",
+                "readOnly": true,
+                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
+              },
+              "RecordModified": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Date of last change to data record",
+                "format": "date-time"
+              },
+              "RecordModifiedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who last changed the data record",
+                "nullable": true
+              },
+              "RecordModifiedFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name or IP adress of the computer used for last change to data record",
+                "nullable": true
+              },
+              "RecordModifiedWith": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the program used for last change to data record",
+                "nullable": true
+              },
+              "RecordValidFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              },
+              "RecordValidTo": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "Ticket": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TicketBase"
+          },
+          {
+            "type": "object",
+            "description": "Workflow tickets are used to store identification, status and history data for a\nrun of any workflow. Each workflow ticket is assigned a unique system-wide\nticket number. View the data of a workflow run in this form.",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "TicketBase": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BusinessObjectBase"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "required": [
+              "Guid",
+              "ServiceStep",
+              "Workflow",
+              "WorkflowRole",
+              "TicketCreateDate",
+              "TicketName",
+              "TicketNo",
+              "WorkflowStartDate"
+            ],
+            "properties": {
+              "Guid": {
+                "type": "string",
+                "description": "global identifier",
+                "format": "guid",
+                "minLength": 1
+              },
+              "ServiceStep": {
+                "type": "integer",
+                "description": "Displays the current workflow step of the workflow ticket.",
+                "format": "int32"
+              },
+              "Workflow": {
+                "type": "integer",
+                "description": "Displays the name of the workflow ticket.",
+                "format": "int32"
+              },
+              "WorkflowRole": {
+                "type": "integer",
+                "description": "Displays the workflow role currently responsible for the workflow ticket.",
+                "format": "int32"
+              },
+              "ServiceTickets": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/ServiceTicket"
+                }
+              },
+              "TicketCreateDate": {
+                "type": "string",
+                "description": "Displays the date on which the data record managed by the workflow was created\non the workflow webform.",
+                "format": "date-time",
+                "minLength": 1
+              },
+              "TicketName": {
+                "type": "string",
+                "description": "Displays the name of the workflow ticket.",
+                "maxLength": 500,
+                "minLength": 1
+              },
+              "TicketNo": {
+                "type": "string",
+                "description": "Displays the ticket number of the workflow run.",
+                "maxLength": 18,
+                "minLength": 1
+              },
+              "WorkflowStartDate": {
+                "type": "string",
+                "description": "Displays the date on which the workflow run was started.",
+                "format": "date-time",
+                "minLength": 1
+              },
+              "PlannedFinishOfworkflow": {
+                "type": "string",
+                "description": "Displays the date on which the workflow should be completed.",
+                "format": "date-time",
+                "nullable": true
+              },
+              "WorkflowCompletedOn": {
+                "type": "string",
+                "description": "Displays the date on which the workflow run ended.",
+                "format": "date-time",
+                "nullable": true
+              },
+              "WorkflowTable": {
+                "type": "string",
+                "description": "To be texted by jens.coosmann@etask.de",
+                "maxLength": 50,
+                "nullable": true
+              },
+              "RecordCreated": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Creation date of this data record",
+                "format": "date-time"
+              },
+              "RecordCreatedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who created the data record",
+                "nullable": true
+              },
+              "RecordDeactivated": {
+                "type": "boolean",
+                "readOnly": true,
+                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
+              },
+              "RecordModified": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Date of last change to data record",
+                "format": "date-time"
+              },
+              "RecordModifiedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who last changed the data record",
+                "nullable": true
+              },
+              "RecordModifiedFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name or IP adress of the computer used for last change to data record",
+                "nullable": true
+              },
+              "RecordModifiedWith": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the program used for last change to data record",
+                "nullable": true
+              },
+              "RecordValidFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              },
+              "RecordValidTo": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "ServiceTicket": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ServiceTicketBase"
+          },
+          {
+            "type": "object",
+            "description": "eTASK.service ticket allows you to order services (e.g. repairs, special\ncleaning or other freely definable services) and manage their execution within a\nspecified framework. The user selects the category and - if available - the\nsubcategory of his request and describes this with a freely definable text.\nOptionally, requests for other persons and buildings can also be entered. After\nsaving the request, you can still upload a document or add a comment at any\ntime. The service request created is forwarded as a ticket to the group\nresponsible for this category in the selected building. Service tickets can be\nretrieved at any time via the service list of the eTASK.FM portal, depending on\nthe read rights of the logged in user.",
+            "additionalProperties": false,
+            "properties": {
+              "Documents": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/Document"
+                }
+              },
+              "Annotations": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Annotations"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "ServiceTicketBase": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BusinessObjectBase"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "required": [
+              "Guid",
+              "Requestor",
+              "ServiceTicketCategory",
+              "Description",
+              "ReportingDate",
+              "Uid",
+              "WorkTimeUndercut"
+            ],
+            "properties": {
+              "Guid": {
+                "type": "string",
+                "description": "global identifier",
+                "format": "guid",
+                "minLength": 1
+              },
+              "Asset": {
+                "type": "integer",
+                "description": "Affected object",
+                "format": "int32",
+                "nullable": true
+              },
+              "Building": {
+                "description": "Apllicants building",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Building"
+                  }
+                ]
+              },
+              "CostCenter": {
+                "description": "Cost Center",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CostCenter"
+                  }
+                ]
+              },
+              "MessageByEmail": {
+                "type": "integer",
+                "description": "To be texted by klaus.aengenvoort@etask.de",
+                "format": "int32",
+                "nullable": true
+              },
+              "Move": {
+                "type": "integer",
+                "description": "To be texted by klaus.aengenvoort@etask.de",
+                "format": "int32",
+                "nullable": true
+              },
+              "OtherBuilding": {
+                "description": "Deviating building (from applicants building)",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Building"
+                  }
+                ]
+              },
+              "OtherPerson": {
+                "description": "Deviating applicant",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Person"
+                  }
+                ]
+              },
+              "OtherRoom": {
+                "description": "Selection of the alternative room if the service is requested for someone else\nor if the service is to be performed in a room in which the requester does not\nhave his or her work center.",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Room"
+                  }
+                ]
+              },
+              "Requestor": {
+                "description": "Applicant",
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Person"
+                  }
+                ]
+              },
+              "RequestorCostCenter": {
+                "description": "Selection of the cost center via which the service ticket is to be billed.",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CostCenter"
+                  }
+                ]
+              },
+              "ResonsiblePerson": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Person"
+                  }
+                ]
+              },
+              "Room": {
+                "description": "Affected room",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Room"
+                  }
+                ]
+              },
+              "ServiceTicketCategory": {
+                "description": "Category",
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "ServiceTicketPriority": {
+                "description": "Priority",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Priority"
+                  }
+                ]
+              },
+              "SubCategory": {
+                "description": "Sub-Category",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/SubCategory"
+                  }
+                ]
+              },
+              "UserGroup": {
+                "type": "integer",
+                "format": "int32",
+                "nullable": true
+              },
+              "WorkflowTicket": {
+                "description": "Ticket no.",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                ]
+              },
+              "WorkOrder": {
+                "type": "integer",
+                "description": "Corresponding maintenance order",
+                "format": "int32",
+                "nullable": true
+              },
+              "Description": {
+                "type": "string",
+                "description": "Description",
+                "maxLength": 4000,
+                "minLength": 1
+              },
+              "ReportingDate": {
+                "type": "string",
+                "description": "Reporting date",
+                "format": "date-time",
+                "minLength": 1
+              },
+              "Uid": {
+                "type": "string",
+                "description": "-- SUMMARY MISSING --",
+                "format": "guid",
+                "minLength": 1
+              },
+              "WorkTimeUndercut": {
+                "type": "boolean",
+                "description": "-- SUMMARY MISSING --"
+              },
+              "DesiredDeliveryDate": {
+                "type": "string",
+                "description": "Enter a desired delivery date[DD.MM.YYYYY] and a desired delivery time[hh:mm].",
+                "format": "date-time",
+                "nullable": true
+              },
+              "TicketNumber": {
+                "type": "string",
+                "description": "-- SUMMARY MISSING --",
+                "maxLength": 18,
+                "nullable": true
+              },
+              "RecordCreated": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Creation date of this data record",
+                "format": "date-time"
+              },
+              "RecordCreatedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who created the data record",
+                "nullable": true
+              },
+              "RecordDeactivated": {
+                "type": "boolean",
+                "readOnly": true,
+                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
+              },
+              "RecordModified": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Date of last change to data record",
+                "format": "date-time"
+              },
+              "RecordModifiedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who last changed the data record",
+                "nullable": true
+              },
+              "RecordModifiedFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name or IP adress of the computer used for last change to data record",
+                "nullable": true
+              },
+              "RecordModifiedWith": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the program used for last change to data record",
+                "nullable": true
+              },
+              "RecordValidFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              },
+              "RecordValidTo": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "Category": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CategoryBase"
+          },
+          {
+            "type": "object",
+            "description": "Enter here the names fu¨r and the service categories you want to offer the\nservice ticket to u¨ber (e.g. \"Cleaning\"). Then add a group of people to be\nresponsible for processing the service tickets in this category. If you want to\nexpand the category further, add a sub-category (e.g. \"Window cleaning\").",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "CategoryBase": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BusinessObjectBase"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "required": [
+              "Guid"
+            ],
+            "properties": {
+              "Guid": {
+                "type": "string",
+                "description": "global identifier",
+                "format": "guid",
+                "minLength": 1
+              },
+              "SubCategories": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/SubCategory"
+                }
+              },
+              "Classification": {
+                "type": "integer",
+                "description": "Classification",
+                "format": "int32",
+                "nullable": true
+              },
+              "Code": {
+                "type": "string",
+                "description": "Enter an abbreviation for the service category.",
+                "maxLength": 50,
+                "nullable": true
+              },
+              "Name": {
+                "type": "string",
+                "description": "Enter the full name for the service category.",
+                "maxLength": 100,
+                "nullable": true
+              },
+              "Position": {
+                "type": "integer",
+                "description": "Position",
+                "format": "int32",
+                "nullable": true
+              },
+              "RecordCreated": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Creation date of this data record",
+                "format": "date-time"
+              },
+              "RecordCreatedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who created the data record",
+                "nullable": true
+              },
+              "RecordDeactivated": {
+                "type": "boolean",
+                "readOnly": true,
+                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
+              },
+              "RecordModified": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Date of last change to data record",
+                "format": "date-time"
+              },
+              "RecordModifiedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who last changed the data record",
+                "nullable": true
+              },
+              "RecordModifiedFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name or IP adress of the computer used for last change to data record",
+                "nullable": true
+              },
+              "RecordModifiedWith": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the program used for last change to data record",
+                "nullable": true
+              },
+              "RecordValidFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              },
+              "RecordValidTo": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "SubCategory": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SubCategoryBase"
+          },
+          {
+            "type": "object",
+            "description": "Here you can further subdivide the categories created for service tickets. For\neach category, you can define any number of subcategories, all of which are to\nbe handled by the same responsible group, e.g. subcategories \"Replace lamps\" and\n\"Seal windows\" in the category \"Caretaker\".",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "SubCategoryBase": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BusinessObjectBase"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "required": [
+              "Guid"
+            ],
+            "properties": {
+              "Guid": {
+                "type": "string",
+                "description": "global identifier",
+                "format": "guid",
+                "minLength": 1
+              },
+              "ServiceTicketCategory": {
+                "description": "Displays the service category in which this sub-category is available.",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                ]
+              },
+              "Code": {
+                "type": "string",
+                "description": "Enter an abbreviation for the sub-category.",
+                "maxLength": 50,
+                "nullable": true
+              },
+              "Name": {
+                "type": "string",
+                "description": "Enter the full name for the sub-category.",
+                "maxLength": 100,
+                "nullable": true
+              },
+              "RecordCreated": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Creation date of this data record",
+                "format": "date-time"
+              },
+              "RecordCreatedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who created the data record",
+                "nullable": true
+              },
+              "RecordDeactivated": {
+                "type": "boolean",
+                "readOnly": true,
+                "description": "Indicates if the data record is deactivated (invisible) or activated (visible)"
+              },
+              "RecordModified": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Date of last change to data record",
+                "format": "date-time"
+              },
+              "RecordModifiedBy": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the user who last changed the data record",
+                "nullable": true
+              },
+              "RecordModifiedFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name or IP adress of the computer used for last change to data record",
+                "nullable": true
+              },
+              "RecordModifiedWith": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Name of the program used for last change to data record",
+                "nullable": true
+              },
+              "RecordValidFrom": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              },
+              "RecordValidTo": {
+                "type": "string",
+                "readOnly": true,
+                "description": "-- SUMMARY MISSING --",
+                "format": "date-time",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "Priority": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PriorityBase"
+          },
+          {
+            "type": "object",
+            "description": "At this point, define priorities that a contractor can assign, e.g. \"high\",\n\"medium\" or \"low\". Avoid numerical priorities where the applicant cannot see\nwhether \"1\" is high or low.",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "PriorityBase": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BusinessObjectBase"
+          },
+          {
+            "type": "object",
+            "x-abstract": true,
+            "additionalProperties": false,
+            "required": [
+              "Guid"
+            ],
+            "properties": {
+              "Guid": {
+                "type": "string",
+                "description": "global identifier",
+                "format": "guid",
+                "minLength": 1
+              },
+              "Code": {
+                "type": "string",
+                "description": "Enter an abbreviation for the priority.",
+                "maxLength": 50,
+                "nullable": true
+              },
+              "Name": {
+                "type": "string",
+                "description": "Enter the full name for the priority.",
+                "maxLength": 100,
                 "nullable": true
               },
               "RecordCreated": {
@@ -22226,48 +20864,63 @@
           }
         ]
       },
-      "EmployeeDto": {
+      "TicketDto": {
         "allOf": [
           {
             "$ref": "#/components/schemas/DtoBase"
           },
           {
             "type": "object",
-            "description": "Mitarbeiter",
             "additionalProperties": false,
+            "required": [
+              "TicketNumber",
+              "Category",
+              "SubCategory",
+              "Description",
+              "Building",
+              "Room"
+            ],
             "properties": {
-              "SurName": {
+              "TicketNumber": {
                 "type": "string",
-                "readOnly": true,
-                "description": "Nachname aus dem Personaldatensatz",
-                "nullable": true
+                "maxLength": 100,
+                "minLength": 3,
+                "pattern": "[0-9]{3}.[0-9]{3}.[0-9]{3}.[0-9]{3}"
               },
-              "GivenName": {
+              "Category": {
                 "type": "string",
-                "readOnly": true,
-                "description": "Vorname aus dem Personaldatensatz",
-                "nullable": true
+                "description": "Eindeutiger Code der Kategorie (e.g. ????)",
+                "maxLength": 100,
+                "minLength": 3
               },
-              "Email": {
+              "SubCategory": {
                 "type": "string",
-                "readOnly": true,
-                "description": "E-Mail aus dem Personaldatensatz",
-                "nullable": true
+                "description": "Eindeutiger Code der untergeordnetes Kategorie",
+                "maxLength": 100,
+                "minLength": 3
               },
-              "MaintainTimesheet": {
-                "type": "boolean",
-                "readOnly": true,
-                "description": "Definiert ob der Mitarbeiter verpflichtet ist Leistungsnachweise anzulegen"
+              "Description": {
+                "type": "string",
+                "description": "Beschreibung des Problems",
+                "maxLength": 4000,
+                "minLength": 3
               },
-              "WorkingTimeAccount": {
-                "readOnly": true,
-                "description": "Informationen über das aktuelle Stundenkonto des Mitarbeiters",
-                "nullable": true,
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/WorkingTimeAccount"
-                  }
-                ]
+              "Building": {
+                "type": "string",
+                "description": "Eindeutiger Code des Gebäudes",
+                "maxLength": 50,
+                "minLength": 3
+              },
+              "Room": {
+                "type": "string",
+                "description": "Eindeutiger Code des Raumes",
+                "maxLength": 50,
+                "minLength": 3
+              },
+              "AssetId": {
+                "type": "integer",
+                "format": "int32",
+                "default": "0"
               }
             }
           }
@@ -22288,83 +20941,74 @@
           }
         }
       },
-      "TimesheetDto": {
+      "BuildingDto": {
         "allOf": [
           {
             "$ref": "#/components/schemas/DtoBase"
           },
           {
             "type": "object",
-            "description": "Leistungsnachweise",
             "additionalProperties": false,
             "required": [
-              "Date",
-              "PresenceLocation"
+              "Name",
+              "Number",
+              "City",
+              "ZipCode",
+              "StreetNumber",
+              "Street",
+              "CostCenter",
+              "Site"
             ],
             "properties": {
-              "Date": {
-                "type": "string",
-                "description": "Datum des Arbeitstages",
-                "format": "date-time"
-              },
-              "CheckIn": {
+              "Code": {
                 "type": "string",
                 "readOnly": true,
-                "description": "Uhrzeit des Beginns des Arbeitstages (format: HH:MM)",
-                "format": "time-span"
+                "description": "Eindeutiger Code des Gebäudes (e.g. CGN)",
+                "maxLength": 50,
+                "minLength": 3,
+                "nullable": true
               },
-              "CheckOut": {
+              "Name": {
                 "type": "string",
-                "readOnly": true,
-                "description": "Berechnete Uhrzeit des Endes des Arbeitstages (format: HH:MM)",
-                "format": "time-span"
+                "description": "Bezeichnung des Gebäudes",
+                "maxLength": 50,
+                "minLength": 3
               },
-              "TotalHours": {
-                "type": "number",
-                "readOnly": true,
-                "description": "Berechnet Anzahl der geleisteten Stunden. Summe aller\nEinzelstunden einer Tätigkeitsbeschreibung",
-                "format": "decimal"
+              "Number": {
+                "type": "string",
+                "description": "Nummer des Gebäudes",
+                "maxLength": 10,
+                "minLength": 3
               },
-              "PresenceLocation": {
+              "City": {
                 "type": "string",
-                "description": "Einsatz-/Arbeitsort (e.g. Büro)"
-              }
-            }
-          }
-        ]
-      },
-      "WorkDescriptionDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/DtoBase"
-          },
-          {
-            "type": "object",
-            "description": "Leistungsbeschreibung",
-            "additionalProperties": false,
-            "required": [
-              "InternalOrderNumber",
-              "Description",
-              "Hours"
-            ],
-            "properties": {
-              "InternalOrderNumber": {
-                "type": "string",
-                "description": "Eindeutiger Coder der internen Auftragsnummer (e.g. ENTW1810)",
+                "maxLength": 50,
                 "minLength": 1
               },
-              "Description": {
+              "ZipCode": {
                 "type": "string",
-                "description": "Text der Leistungsbeschreibung, mindestens 6 Zeichen",
-                "maxLength": 2000,
-                "minLength": 6
+                "maxLength": 10,
+                "minLength": 1
               },
-              "Hours": {
-                "type": "number",
-                "description": "Stunden der Leistungsbeschreibung, mindestens 0.25h und maximal 12h in viertelstunden Schritten",
-                "format": "double",
-                "maximum": 12.0,
-                "minimum": 0.25
+              "StreetNumber": {
+                "type": "string",
+                "maxLength": 10,
+                "minLength": 1
+              },
+              "Street": {
+                "type": "string",
+                "maxLength": 50,
+                "minLength": 1
+              },
+              "CostCenter": {
+                "type": "string",
+                "maxLength": 50,
+                "minLength": 1
+              },
+              "Site": {
+                "type": "string",
+                "maxLength": 10,
+                "minLength": 1
               }
             }
           }
@@ -22503,6 +21147,241 @@
           "ServiceUnavailable",
           "GatewayTimeout",
           "HttpVersionNotSupported"
+        ]
+      },
+      "RoomDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DtoBase"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "Name",
+              "Number"
+            ],
+            "properties": {
+              "Code": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Eindeutiger Code des Raumes (e.g. CGN-AKS2-EG00-R001)",
+                "maxLength": 50,
+                "minLength": 3,
+                "nullable": true
+              },
+              "Name": {
+                "type": "string",
+                "description": "Bezeichnung des Raumes",
+                "maxLength": 4000,
+                "minLength": 3
+              },
+              "Number": {
+                "type": "string",
+                "description": "Eindeutige 'Nummer' des Raumes (e.g. R001)",
+                "maxLength": 10,
+                "minLength": 1
+              },
+              "TypeOfUsage": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "CategoryDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DtoBase"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "Code",
+              "Name"
+            ],
+            "properties": {
+              "Code": {
+                "type": "string",
+                "description": "Eindeutiger Code der Kategorie (e.g. ????)",
+                "maxLength": 100,
+                "minLength": 3
+              },
+              "Name": {
+                "type": "string",
+                "description": "Bezeichnung der Kategorie",
+                "maxLength": 200,
+                "minLength": 3
+              }
+            }
+          }
+        ]
+      },
+      "SubCategoryDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DtoBase"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "Code",
+              "Name"
+            ],
+            "properties": {
+              "Code": {
+                "type": "string",
+                "description": "Eindeutiger Code der Unterkategorie (e.g. ????)",
+                "maxLength": 100,
+                "minLength": 3
+              },
+              "Name": {
+                "type": "string",
+                "description": "Bezeichnung der Unterkategorie",
+                "maxLength": 200,
+                "minLength": 3
+              },
+              "Category": {
+                "type": "string",
+                "readOnly": true,
+                "maxLength": 100,
+                "minLength": 3,
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "EmployeeDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DtoBase"
+          },
+          {
+            "type": "object",
+            "description": "Mitarbeiter",
+            "additionalProperties": false,
+            "properties": {
+              "SurName": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Nachname aus dem Personaldatensatz",
+                "nullable": true
+              },
+              "GivenName": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Vorname aus dem Personaldatensatz",
+                "nullable": true
+              },
+              "Email": {
+                "type": "string",
+                "readOnly": true,
+                "description": "E-Mail aus dem Personaldatensatz",
+                "nullable": true
+              },
+              "MaintainTimesheet": {
+                "type": "boolean",
+                "readOnly": true,
+                "description": "Definiert ob der Mitarbeiter verpflichtet ist Leistungsnachweise anzulegen"
+              },
+              "WorkingTimeAccount": {
+                "readOnly": true,
+                "description": "Informationen über das aktuelle Stundenkonto des Mitarbeiters",
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/WorkingTimeAccount"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "TimesheetDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DtoBase"
+          },
+          {
+            "type": "object",
+            "description": "Leistungsnachweise",
+            "additionalProperties": false,
+            "required": [
+              "Date",
+              "PresenceLocation"
+            ],
+            "properties": {
+              "Date": {
+                "type": "string",
+                "description": "Datum des Arbeitstages",
+                "format": "date-time"
+              },
+              "CheckIn": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Uhrzeit des Beginns des Arbeitstages (format: HH:MM)",
+                "format": "time-span"
+              },
+              "CheckOut": {
+                "type": "string",
+                "readOnly": true,
+                "description": "Berechnete Uhrzeit des Endes des Arbeitstages (format: HH:MM)",
+                "format": "time-span"
+              },
+              "TotalHours": {
+                "type": "number",
+                "readOnly": true,
+                "description": "Berechnet Anzahl der geleisteten Stunden. Summe aller\nEinzelstunden einer Tätigkeitsbeschreibung",
+                "format": "decimal"
+              },
+              "PresenceLocation": {
+                "type": "string",
+                "description": "Einsatz-/Arbeitsort (e.g. Büro)"
+              }
+            }
+          }
+        ]
+      },
+      "WorkDescriptionDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DtoBase"
+          },
+          {
+            "type": "object",
+            "description": "Leistungsbeschreibung",
+            "additionalProperties": false,
+            "required": [
+              "InternalOrderNumber",
+              "Description",
+              "Hours"
+            ],
+            "properties": {
+              "InternalOrderNumber": {
+                "type": "string",
+                "description": "Eindeutiger Coder der internen Auftragsnummer (e.g. ENTW1810)",
+                "minLength": 1
+              },
+              "Description": {
+                "type": "string",
+                "description": "Text der Leistungsbeschreibung, mindestens 6 Zeichen",
+                "maxLength": 2000,
+                "minLength": 6
+              },
+              "Hours": {
+                "type": "number",
+                "description": "Stunden der Leistungsbeschreibung, mindestens 0.25h und maximal 12h in viertelstunden Schritten",
+                "format": "double",
+                "maximum": 12.0,
+                "minimum": 0.25
+              }
+            }
+          }
         ]
       },
       "HttpError": {
@@ -22984,10 +21863,6 @@
   ],
   "tags": [
     {
-      "name": "Services.ServiceTickets",
-      "description": "eTASK.service ticket allows you to order services (e.g. repairs, special cleaning or other freely definable services) and manage their execution within a specified framework. The user selects the category and - if available - the subcategory of his request and describes this with a freely definable text. Optionally, requests for other persons and buildings can also be entered. After saving the request, you can still upload a document or add a comment at any time. The service request created is forwarded as a ticket to the group responsible for this category in the selected building. Service tickets can be retrieved at any time via the service list of the eTASK.FM portal, depending on the read rights of the logged in user."
-    },
-    {
       "name": "Workplace.AllocationPersonnelToHseqFunctions",
       "description": "Here you assign employees to the HSE function they perform. This enables you to assign the employee in participant scheduling to a course in the area of the existing HSE function. If the HSE function is a basic function, all employees can participate in a training course in their area. An additional assignment of employees to the basic function is therefore not necessary, but may be useful for organizational purposes, since the employees actually hold the HSE function during the assignment."
     },
@@ -23010,14 +21885,6 @@
     {
       "name": "TenancyManagement.RentalMonths",
       "description": "This list contains the months provided by the system (day, number of days/month)."
-    },
-    {
-      "name": "Services.Categories",
-      "description": "Enter here the names fu¨r and the service categories you want to offer the service ticket to u¨ber (e.g. \"Cleaning\"). Then add a group of people to be responsible for processing the service tickets in this category. If you want to expand the category further, add a sub-category (e.g. \"Window cleaning\")."
-    },
-    {
-      "name": "Services.Priorities",
-      "description": "At this point, define priorities that a contractor can assign, e.g. \"high\", \"medium\" or \"low\". Avoid numerical priorities where the applicant cannot see whether \"1\" is high or low."
     },
     {
       "name": "PortalOperation.EtaskEntities",
@@ -23076,10 +21943,6 @@
       "description": "The abbreviations of the FM modules are assigned to their complete names via this portal-internal administration table. Note: The data records may only be changed by system administrators. Every change can lead to system-wide complications!"
     },
     {
-      "name": "Core.Assets",
-      "description": "In the eTASK.FM portal, all movable and immovable assets are referred to as \"objects\". There are many different objects that you can manage within the eTASK.FM portal."
-    },
-    {
       "name": "Core.Buildings",
       "description": "Create data records for the various buildings in the organization. Enter information on the identification (assignment of a location and a building number and description) and address of the building as well as the building description. See at a glance how the current use of space (according to DIN 277) is distributed in the building. Assign the floors in the building. If you also use eTASK Maintenance, all maintenance contracts concluded with external or internal service providers for this building are displayed."
     },
@@ -23090,6 +21953,10 @@
     {
       "name": "Core.CostCenters",
       "description": "Here you can create data records for cost centers in your company. The entered cost centers can be selected later in many places of the FM portal."
+    },
+    {
+      "name": "Core.Din277UsageTypes",
+      "description": "Create data records for usage types of building areas according to DIN 277. These data records can later be selected in the \"Rooms\" form and can also be further subdivided by the data records in the \"Internal usage types\" list."
     },
     {
       "name": "Core.Floors",
