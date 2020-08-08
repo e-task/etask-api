@@ -2916,5 +2916,35 @@
       ],
       "_postman_id": "19265ced-41e3-4dd5-9a3c-1bd3d5873cea"
     }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "9f41d5e1-cd1d-4717-9d4b-9684007a2c3a",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "7eaefab2-e40e-43fc-9bcf-9799871bb693",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "25981c61-2929-41b2-ae03-818002c348b1",
+      "key": "variable",
+      "value": "1",
+      "type": "string"
+    }
   ]
 }
