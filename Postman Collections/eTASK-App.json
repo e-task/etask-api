@@ -2960,6 +2960,236 @@
               "body": ""
             }
           ]
+        },
+        {
+          "name": "Fetch the list of all 'Substitutes'. Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "80d005c8-47c6-4ed0-8d15-a3cdaa1c4250",
+                "exec": [
+                  "//Objects\r",
+                  "var substituted = JSON.parse(responseBody);\r",
+                  "pm.environment.set(\"Substitutes\",substituted);\r",
+                  "//Counter\r",
+                  "var count_subsituted;\r",
+                  "pm.environment.set(\"Counted_substituted\",count_subsituted)\r",
+                  "var count_subsitutes;\r",
+                  "pm.environment.set(\"Counted_substitutes\",count_subsitutes)\r",
+                  "\r",
+                  "//Check if all mandatory 'substituted' fields are filled \r",
+                  "pm.test(\"Mandatory 'Substituted' fields filled\", () => {\r",
+                  "    _.each(substituted, (arrItem) => {\r",
+                  "        //\r",
+                  "            pm.expect(arrItem.Guid).to.exist;\r",
+                  "            pm.expect(arrItem.Active).to.exist;\r",
+                  "            pm.expect(arrItem.DateFrom).to.exist;\r",
+                  "            console.log(\"Ticket GUID\");\r",
+                  "            console.log(arrItem.Guid);\r",
+                  "            console.log(\"Ticket active?!\");\r",
+                  "            console.log(arrItem.Active);\r",
+                  "            console.log(\"Ticket Date\");\r",
+                  "            console.log(arrItem.DateFrom);\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.Guid).to.exist;\r",
+                  "            console.log(\"Substituted Person\");\r",
+                  "            console.log(arrItem.SubstitutedPerson.Guid);\r",
+                  "            console.log(arrItem.SubstitutedPerson.GivenName);\r",
+                  "            console.log(\"Substituting Person\");\r",
+                  "            console.log(arrItem.SubstitutingPerson.Guid);\r",
+                  "            console.log(arrItem.SubstitutingPerson.GivenName);\r",
+                  "\r",
+                  "            //console.log(arrItem.SubstitutedPerson.Guid);\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.Inactive).not.eql(undefined)\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.Locked).not.eql(undefined)\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.PasswordNeverExpires).not.eql(undefined)\r",
+                  "    })\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "24a10b4b-e5c3-4550-89c4-fe3131ebdb4f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "eTASK.Api Token authentication",
+                "key": "EtaskApiToken",
+                "value": "{{API-Token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{Portal-URL}}/API/WorkflowEngine/Substitutes?page=<integer>&limit=<integer>&expand=<string>",
+              "host": [
+                "{{Portal-URL}}"
+              ],
+              "path": [
+                "API",
+                "WorkflowEngine",
+                "Substitutes"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "start page."
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "limit of records per page."
+                },
+                {
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "(optional) A csv list of all child properties to expand for this resource."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "058c4222-2d6a-4202-a75c-30139617e815",
+              "name": "no 'Substitutes' found!",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/WorkflowEngine/Substitutes?page=<integer>&limit=<integer>&expand=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "WorkflowEngine",
+                    "Substitutes"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": ""
+            },
+            {
+              "id": "6dafb73b-e4e0-4364-a469-f565dc228498",
+              "name": "returns a list of all items",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/WorkflowEngine/Substitutes?page=<integer>&limit=<integer>&expand=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "WorkflowEngine",
+                    "Substitutes"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n {\n  \"RecordCreated\": \"minim est cupidat\",\n  \"RecordCreatedBy\": \"ut proident\",\n  \"RecordDeactivated\": true,\n  \"RecordModified\": \"Duis ad commodo\",\n  \"RecordModifiedBy\": \"ut ex dolore Excepteur in\",\n  \"RecordModifiedFrom\": \"reprehenderit\",\n  \"RecordModifiedWith\": \"velit laboris\",\n  \"RecordValidFrom\": \"velit ad dolor dolore est\",\n  \"RecordValidTo\": \"ex amet mollit\",\n  \"Guid\": \"elit consectetur\",\n  \"SubstitutedPerson\": {\n   \"Images\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"Employee\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRooms\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyFloors\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyBuildings\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MySites\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRoles\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   }\n  },\n  \"SubstitutingPerson\": {\n   \"Images\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"Employee\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRooms\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyFloors\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyBuildings\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MySites\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRoles\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   }\n  },\n  \"Active\": true,\n  \"DateFrom\": \"Duis non nostrud\",\n  \"DateTo\": \"sit mollit nisi\"\n },\n {\n  \"RecordCreated\": \"ut est laborum anim occaecat\",\n  \"RecordCreatedBy\": \"sed occaecat id\",\n  \"RecordDeactivated\": false,\n  \"RecordModified\": \"non\",\n  \"RecordModifiedBy\": \"laborum aliqua fugiat in qui\",\n  \"RecordModifiedFrom\": \"cillum\",\n  \"RecordModifiedWith\": \"officia culpa velit\",\n  \"RecordValidFrom\": \"ad nulla sed velit\",\n  \"RecordValidTo\": \"quis aliqua\",\n  \"Guid\": \"minim\",\n  \"SubstitutedPerson\": {\n   \"Images\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"Employee\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRooms\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyFloors\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyBuildings\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MySites\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRoles\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   }\n  },\n  \"SubstitutingPerson\": {\n   \"Images\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"Employee\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRooms\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyFloors\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyBuildings\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MySites\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   },\n   \"MyRoles\": {\n    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n   }\n  },\n  \"Active\": true,\n  \"DateFrom\": \"in irure aliqua\",\n  \"DateTo\": \"occaecat veniam\"\n }\n]"
+            },
+            {
+              "id": "7902c12c-5569-4732-9d61-5cf5ca8320ec",
+              "name": "Unauthorized, the EtaskApiToken is missing or invalid (expired)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/WorkflowEngine/Substitutes?page=<integer>&limit=<integer>&expand=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "WorkflowEngine",
+                    "Substitutes"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": ""
+            }
+          ]
         }
       ],
       "_postman_id": "19265ced-41e3-4dd5-9a3c-1bd3d5873cea"
@@ -2989,7 +3219,7 @@
   ],
   "variable": [
     {
-      "id": "5de37b61-bdec-4590-ae81-44372df7fef0",
+      "id": "893f0b47-febc-4586-9ece-969697596c15",
       "key": "variable",
       "value": "1",
       "type": "string"
