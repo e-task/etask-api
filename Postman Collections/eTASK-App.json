@@ -2775,7 +2775,7 @@
           ]
         },
         {
-          "name": "Fetch the list of all 'Substitutes'. Copy",
+          "name": "Fetch the list of all 'Substitutes' BETA",
           "event": [
             {
               "listen": "test",
@@ -3219,7 +3219,7 @@
   ],
   "variable": [
     {
-      "id": "900a4aeb-9549-4ef2-a82d-726aa786fdc0",
+      "id": "fe75979f-05ef-4f7f-8d80-3d6d1239bb64",
       "key": "variable",
       "value": "1",
       "type": "string"
