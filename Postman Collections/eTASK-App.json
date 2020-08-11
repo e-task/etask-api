@@ -2546,6 +2546,54 @@
         },
         {
           "name": "Fetch the list of all 'Substitutes'.",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9d992575-a1ae-4b57-a750-92a5b709a7e4",
+                "exec": [
+                  "//Objects\r",
+                  "var substituted = JSON.parse(responseBody);\r",
+                  "pm.environment.set(\"Substitutes\",substituted);\r",
+                  "//Counter\r",
+                  "var count_subsituted;\r",
+                  "pm.environment.set(\"Counted_substituted\",count_subsituted)\r",
+                  "var count_subsitutes;\r",
+                  "pm.environment.set(\"Counted_substitutes\",count_subsitutes)\r",
+                  "\r",
+                  "//Check if all mandatory 'substituted' fields are filled \r",
+                  "pm.test(\"Mandatory 'Substituted' fields filled\", () => {\r",
+                  "    _.each(substituted, (arrItem) => {\r",
+                  "        //\r",
+                  "            pm.expect(arrItem.Guid).to.exist;\r",
+                  "            pm.expect(arrItem.Active).to.exist;\r",
+                  "            pm.expect(arrItem.DateFrom).to.exist;\r",
+                  "            console.log(\"Ticket GUID\");\r",
+                  "            console.log(arrItem.Guid);\r",
+                  "            console.log(\"Ticket active?!\");\r",
+                  "            console.log(arrItem.Active);\r",
+                  "            console.log(\"Ticket Date\");\r",
+                  "            console.log(arrItem.DateFrom);\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.Guid).to.exist;\r",
+                  "            console.log(\"Substituted Person\");\r",
+                  "            console.log(arrItem.SubstitutedPerson.Guid);\r",
+                  "            console.log(arrItem.SubstitutedPerson.GivenName);\r",
+                  "            console.log(\"Substituting Person\");\r",
+                  "            console.log(arrItem.SubstitutingPerson.Guid);\r",
+                  "            console.log(arrItem.SubstitutingPerson.GivenName);\r",
+                  "\r",
+                  "            //console.log(arrItem.SubstitutedPerson.Guid);\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.Inactive).not.eql(undefined)\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.Locked).not.eql(undefined)\r",
+                  "            //pm.expect(arrItem.SubstitutedPerson.PasswordNeverExpires).not.eql(undefined)\r",
+                  "    })\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
           "_postman_id": "3365ff22-b154-4cb0-b371-de0503f7cd25",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
@@ -2941,7 +2989,7 @@
   ],
   "variable": [
     {
-      "id": "5dbf3924-78c6-414f-8e28-4e391e5d09fa",
+      "id": "ab450db6-d2ba-44c2-bf51-508ee5463427",
       "key": "variable",
       "value": "1",
       "type": "string"
