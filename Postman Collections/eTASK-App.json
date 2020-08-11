@@ -2775,193 +2775,6 @@
           ]
         },
         {
-          "name": "Create a new 'Substitute'.",
-          "_postman_id": "4154b738-f9db-4fe0-9f89-c0e176f9e7fc",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [
-              {
-                "description": "eTASK.Api Token authentication",
-                "key": "EtaskApiToken",
-                "value": ""
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"RecordCreated\": \"culpa\",\n    \"RecordCreatedBy\": \"veniam qui tempor\",\n    \"RecordDeactivated\": false,\n    \"RecordModified\": \"eiusmod dolor\",\n    \"RecordModifiedBy\": \"aliquip incidid\",\n    \"RecordModifiedFrom\": \"esse aliquip\",\n    \"RecordModifiedWith\": \"laborum Ut deserunt\",\n    \"RecordValidFrom\": \"fugiat quis\",\n    \"RecordValidTo\": \"dolor magna\",\n    \"Guid\": \"in et\",\n    \"SubstitutedPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"SubstitutingPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"Active\": false,\n    \"DateFrom\": \"adipi\",\n    \"DateTo\": \"labore proident tempor magna Ut\"\n}",
-              "options": {
-                "raw": {}
-              }
-            },
-            "url": "{{Portal-URL}}/API/WorkflowEngine/Substitutes"
-          },
-          "response": [
-            {
-              "id": "1e025798-93f5-4bc0-8ef2-7976d098bbe9",
-              "name": "if given 'Substitute' is invalid",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"RecordCreated\": \"nostrud aliquip nulla\",\n    \"RecordCreatedBy\": \"laboris qui est pariatur\",\n    \"RecordDeactivated\": true,\n    \"RecordModified\": \"Lorem a\",\n    \"RecordModifiedBy\": \"eu aliqua ipsum in\",\n    \"RecordModifiedFrom\": \"al\",\n    \"RecordModifiedWith\": \"quis dolore deserunt\",\n    \"RecordValidFrom\": \"enim exercita\",\n    \"RecordValidTo\": \"culpa proident\",\n    \"Guid\": \"nisi exercitation quis non in\",\n    \"SubstitutedPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"SubstitutingPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"Active\": false,\n    \"DateFrom\": \"esse labore non dolor consequat\",\n    \"DateTo\": \"sunt nostrud\"\n}"
-                },
-                "url": "{{baseUrl}}/WorkflowEngine/Substitutes"
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "_postman_previewlanguage": "text",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": ""
-            },
-            {
-              "id": "89c2ea0e-bcfb-4bac-8f9f-4080c7f56a68",
-              "name": "creates a 'Substitute' and returns the new item",
-              "originalRequest": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"RecordCreated\": \"nostrud aliquip nulla\",\n    \"RecordCreatedBy\": \"laboris qui est pariatur\",\n    \"RecordDeactivated\": true,\n    \"RecordModified\": \"Lorem a\",\n    \"RecordModifiedBy\": \"eu aliqua ipsum in\",\n    \"RecordModifiedFrom\": \"al\",\n    \"RecordModifiedWith\": \"quis dolore deserunt\",\n    \"RecordValidFrom\": \"enim exercita\",\n    \"RecordValidTo\": \"culpa proident\",\n    \"Guid\": \"nisi exercitation quis non in\",\n    \"SubstitutedPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"SubstitutingPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"Active\": false,\n    \"DateFrom\": \"esse labore non dolor consequat\",\n    \"DateTo\": \"sunt nostrud\"\n}"
-                },
-                "url": "{{baseUrl}}/WorkflowEngine/Substitutes"
-              },
-              "status": "Created",
-              "code": 201,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": "{\n \"RecordCreated\": \"nostrud aliquip nulla\",\n \"RecordCreatedBy\": \"laboris qui est pariatur\",\n \"RecordDeactivated\": true,\n \"RecordModified\": \"Lorem a\",\n \"RecordModifiedBy\": \"eu aliqua ipsum in\",\n \"RecordModifiedFrom\": \"al\",\n \"RecordModifiedWith\": \"quis dolore deserunt\",\n \"RecordValidFrom\": \"enim exercita\",\n \"RecordValidTo\": \"culpa proident\",\n \"Guid\": \"nisi exercitation quis non in\",\n \"SubstitutedPerson\": {\n  \"Images\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"Employee\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRooms\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyFloors\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyBuildings\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MySites\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRoles\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  }\n },\n \"SubstitutingPerson\": {\n  \"Images\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"Employee\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRooms\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyFloors\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyBuildings\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MySites\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRoles\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  }\n },\n \"Active\": false,\n \"DateFrom\": \"esse labore non dolor consequat\",\n \"DateTo\": \"sunt nostrud\"\n}"
-            }
-          ]
-        },
-        {
-          "name": "Fetch the total count of 'Substitutes'.",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5b7d5934-13c4-4cbd-8a7f-ebe8359439c9",
-                "exec": [
-                  "pm.test(\"200\", function () {\r",
-                  "    pm.response.to.have.status(200);\r",
-                  "});\r",
-                  "pm.test(\"Filled\", function () {\r",
-                  "    pm.expect(responseBody).to.exist;\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "_postman_id": "b074e08b-987d-43cc-98d2-2a3ef0ce7b6a",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [
-              {
-                "description": "eTASK.Api Token authentication",
-                "key": "EtaskApiToken",
-                "value": "{{API-Token}}"
-              }
-            ],
-            "url": "{{Portal-URL}}/API/WorkflowEngine/Substitutes/Count"
-          },
-          "response": [
-            {
-              "id": "5c172899-546c-4686-a2ab-ae7c0c79d0b9",
-              "name": "returns a count of items",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": "{{baseUrl}}/WorkflowEngine/Substitutes/Count"
-              },
-              "status": "OK",
-              "code": 200,
-              "_postman_previewlanguage": "json",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": "14617705"
-            },
-            {
-              "id": "d5c56bb2-02d1-49f4-b644-0b799f5b70b0",
-              "name": "no 'Substitutes' found!",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": "{{baseUrl}}/WorkflowEngine/Substitutes/Count"
-              },
-              "status": "Not Found",
-              "code": 404,
-              "_postman_previewlanguage": "text",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": ""
-            },
-            {
-              "id": "e92fc116-6172-4d09-a2bf-f4680cd43e2a",
-              "name": "Unauthorized, the EtaskApiToken is missing or invalid (expired)",
-              "originalRequest": {
-                "method": "GET",
-                "header": [],
-                "url": "{{baseUrl}}/WorkflowEngine/Substitutes/Count"
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "_postman_previewlanguage": "text",
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "cookie": [],
-              "responseTime": null,
-              "body": ""
-            }
-          ]
-        },
-        {
           "name": "Fetch the list of all 'Substitutes'. Copy",
           "event": [
             {
@@ -3190,6 +3003,193 @@
               "body": ""
             }
           ]
+        },
+        {
+          "name": "Create a new 'Substitute'.",
+          "_postman_id": "4154b738-f9db-4fe0-9f89-c0e176f9e7fc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "description": "eTASK.Api Token authentication",
+                "key": "EtaskApiToken",
+                "value": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"RecordCreated\": \"culpa\",\n    \"RecordCreatedBy\": \"veniam qui tempor\",\n    \"RecordDeactivated\": false,\n    \"RecordModified\": \"eiusmod dolor\",\n    \"RecordModifiedBy\": \"aliquip incidid\",\n    \"RecordModifiedFrom\": \"esse aliquip\",\n    \"RecordModifiedWith\": \"laborum Ut deserunt\",\n    \"RecordValidFrom\": \"fugiat quis\",\n    \"RecordValidTo\": \"dolor magna\",\n    \"Guid\": \"in et\",\n    \"SubstitutedPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"SubstitutingPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"Active\": false,\n    \"DateFrom\": \"adipi\",\n    \"DateTo\": \"labore proident tempor magna Ut\"\n}",
+              "options": {
+                "raw": {}
+              }
+            },
+            "url": "{{Portal-URL}}/API/WorkflowEngine/Substitutes"
+          },
+          "response": [
+            {
+              "id": "1e025798-93f5-4bc0-8ef2-7976d098bbe9",
+              "name": "if given 'Substitute' is invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"RecordCreated\": \"nostrud aliquip nulla\",\n    \"RecordCreatedBy\": \"laboris qui est pariatur\",\n    \"RecordDeactivated\": true,\n    \"RecordModified\": \"Lorem a\",\n    \"RecordModifiedBy\": \"eu aliqua ipsum in\",\n    \"RecordModifiedFrom\": \"al\",\n    \"RecordModifiedWith\": \"quis dolore deserunt\",\n    \"RecordValidFrom\": \"enim exercita\",\n    \"RecordValidTo\": \"culpa proident\",\n    \"Guid\": \"nisi exercitation quis non in\",\n    \"SubstitutedPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"SubstitutingPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"Active\": false,\n    \"DateFrom\": \"esse labore non dolor consequat\",\n    \"DateTo\": \"sunt nostrud\"\n}"
+                },
+                "url": "{{baseUrl}}/WorkflowEngine/Substitutes"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": ""
+            },
+            {
+              "id": "89c2ea0e-bcfb-4bac-8f9f-4080c7f56a68",
+              "name": "creates a 'Substitute' and returns the new item",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"RecordCreated\": \"nostrud aliquip nulla\",\n    \"RecordCreatedBy\": \"laboris qui est pariatur\",\n    \"RecordDeactivated\": true,\n    \"RecordModified\": \"Lorem a\",\n    \"RecordModifiedBy\": \"eu aliqua ipsum in\",\n    \"RecordModifiedFrom\": \"al\",\n    \"RecordModifiedWith\": \"quis dolore deserunt\",\n    \"RecordValidFrom\": \"enim exercita\",\n    \"RecordValidTo\": \"culpa proident\",\n    \"Guid\": \"nisi exercitation quis non in\",\n    \"SubstitutedPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"SubstitutingPerson\": {\n        \"Images\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"Employee\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRooms\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyFloors\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyBuildings\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MySites\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"MyRoles\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n    },\n    \"Active\": false,\n    \"DateFrom\": \"esse labore non dolor consequat\",\n    \"DateTo\": \"sunt nostrud\"\n}"
+                },
+                "url": "{{baseUrl}}/WorkflowEngine/Substitutes"
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n \"RecordCreated\": \"nostrud aliquip nulla\",\n \"RecordCreatedBy\": \"laboris qui est pariatur\",\n \"RecordDeactivated\": true,\n \"RecordModified\": \"Lorem a\",\n \"RecordModifiedBy\": \"eu aliqua ipsum in\",\n \"RecordModifiedFrom\": \"al\",\n \"RecordModifiedWith\": \"quis dolore deserunt\",\n \"RecordValidFrom\": \"enim exercita\",\n \"RecordValidTo\": \"culpa proident\",\n \"Guid\": \"nisi exercitation quis non in\",\n \"SubstitutedPerson\": {\n  \"Images\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"Employee\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRooms\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyFloors\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyBuildings\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MySites\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRoles\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  }\n },\n \"SubstitutingPerson\": {\n  \"Images\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"Employee\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRooms\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyFloors\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyBuildings\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MySites\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  },\n  \"MyRoles\": {\n   \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n  }\n },\n \"Active\": false,\n \"DateFrom\": \"esse labore non dolor consequat\",\n \"DateTo\": \"sunt nostrud\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Fetch the total count of 'Substitutes'.",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5b7d5934-13c4-4cbd-8a7f-ebe8359439c9",
+                "exec": [
+                  "pm.test(\"200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.test(\"Filled\", function () {\r",
+                  "    pm.expect(responseBody).to.exist;\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "b074e08b-987d-43cc-98d2-2a3ef0ce7b6a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "eTASK.Api Token authentication",
+                "key": "EtaskApiToken",
+                "value": "{{API-Token}}"
+              }
+            ],
+            "url": "{{Portal-URL}}/API/WorkflowEngine/Substitutes/Count"
+          },
+          "response": [
+            {
+              "id": "5c172899-546c-4686-a2ab-ae7c0c79d0b9",
+              "name": "returns a count of items",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/WorkflowEngine/Substitutes/Count"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "14617705"
+            },
+            {
+              "id": "d5c56bb2-02d1-49f4-b644-0b799f5b70b0",
+              "name": "no 'Substitutes' found!",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/WorkflowEngine/Substitutes/Count"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": ""
+            },
+            {
+              "id": "e92fc116-6172-4d09-a2bf-f4680cd43e2a",
+              "name": "Unauthorized, the EtaskApiToken is missing or invalid (expired)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "{{baseUrl}}/WorkflowEngine/Substitutes/Count"
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": ""
+            }
+          ]
         }
       ],
       "_postman_id": "19265ced-41e3-4dd5-9a3c-1bd3d5873cea"
@@ -3219,7 +3219,7 @@
   ],
   "variable": [
     {
-      "id": "893f0b47-febc-4586-9ece-969697596c15",
+      "id": "900a4aeb-9549-4ef2-a82d-726aa786fdc0",
       "key": "variable",
       "value": "1",
       "type": "string"
